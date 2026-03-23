@@ -18,4 +18,4 @@ El diseño de este sitio prioriza el Retorno de Inversión (ROI), la velocidad d
 - **Tipografía:** Inter (Sans-serif geométrica)
 
 ## 📞 Contacto
-Para soporte técnico o despliegues, contactar a la administración de Nova IA.
+Para soporte técnico o despliegues, contactar a la administración de Nova IA - +573112351285.
