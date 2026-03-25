@@ -4,29 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova IA | Agentes de Inteligencia Artificial y Web B2B</title>
-    <meta name="description" content="Implementamos Agentes de IA autónomos y sitios web de alta conversión para PYMEs en Colombia. Tecnología con Rostro, Resultados con Datos.">
+    <meta name="description" content="Implementamos Agentes de IA autónomos y sitios web de alta conversión para PYMEs en Colombia. Precios transparentes, resultados medibles.">
     
-    <!-- Tailwind CSS (CDN para usarlo en un solo archivo) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración personalizada para la estética de Nova IA -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        brand: { 500: '#2563eb', 600: '#1d4ed8' }
-                    }
+                    colors: { brand: { 500: '#2563eb', 600: '#1d4ed8' } }
                 }
             }
         }
     </script>
     <style>
-        /* Tipografía moderna similar a Inter/Linear */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         
-        /* Efecto Claymorphism para el botón principal */
         .btn-clay {
             box-shadow: inset 0 0px 1px 1px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.5);
             transition: all 0.2s ease;
@@ -36,7 +29,6 @@
             transform: translateY(-2px);
         }
         
-        /* Efecto de fondo brillante (Glow) */
         .bg-glow {
             position: absolute; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(0,0,0,0) 70%);
@@ -47,183 +39,155 @@
 </head>
 <body class="bg-neutral-950 text-neutral-50 antialiased selection:bg-brand-500/30 relative overflow-x-hidden">
 
-    <!-- BARRA DE NAVEGACIÓN -->
+    <!-- NAVBAR -->
     <nav class="fixed top-0 w-full bg-neutral-950/80 backdrop-blur-md border-b border-white/10 z-50">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="font-bold text-xl tracking-tight flex items-center gap-2">
                 <div class="w-3 h-3 bg-brand-500 rounded-full"></div> Nova IA
             </div>
-            <!-- BOTÓN WHATSAPP 1: NAVBAR -->
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20información%20sobre%20Nova%20IA" target="_blank" class="text-sm font-semibold text-neutral-300 hover:text-white transition-colors">
-                Contacto Directo
-            </a>
+            <div class="flex gap-6 items-center">
+                <a href="#precios" class="text-sm font-semibold text-neutral-400 hover:text-white transition-colors hidden sm:block">Ver Precios</a>
+                <a href="https://wa.me/573112351285?text=Hola,%20vengo%20de%20la%20web.%20Quiero%20empezar%20un%20proyecto" target="_blank" class="text-sm font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+                    Contacto Directo
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- SECCIÓN 1: HERO (El Problema y el Gancho) -->
-    <header class="relative pt-40 pb-24 px-6 max-w-5xl mx-auto text-center z-10">
+    <!-- HERO DIRECTO -->
+    <header class="relative pt-40 pb-20 px-6 max-w-5xl mx-auto text-center z-10">
         <div class="bg-glow"></div>
         
         <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-medium rounded-full bg-white/5 border border-white/10 text-neutral-300">
             <span class="flex h-2 w-2 rounded-full bg-brand-500"></span>
-            Tecnología con Rostro, Resultados con Datos
+            Transparencia B2B: Sin presupuestos ocultos
         </div>
 
         <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500 leading-tight">
-            Su empresa pierde negocios cada vez que un cliente espera una respuesta?
+            Tecnología que multiplica ventas. <br>A un precio que tiene sentido.
         </h1>
 
         <p class="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Implementamos <strong class="text-white font-semibold">Agentes de IA autónomos</strong> y sitios web de alta conversión para que su negocio capte leads 24/7, califique prospectos y ahorre horas.
+            Construimos su <strong class="text-white">Sitio Web de Alta Conversión</strong> y configuramos <strong class="text-white">Agentes de IA Autónomos</strong> para que su negocio capte y atienda clientes 24/7. Sin agencias lentas, sin letras pequeñas.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <!-- BOTÓN WHATSAPP 2: HERO (Efecto Clay) -->
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20un%20diagnóstico%20operativo" target="_blank" class="btn-clay w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-b from-brand-500 to-brand-600">
-                Iniciar diagnóstico por WhatsApp
+            <a href="#precios" class="btn-clay w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-b from-brand-500 to-brand-600">
+                Ver Planes y Precios ↓
             </a>
-            <a href="#solucion" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-neutral-300 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                Ver cómo funciona ↓
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20una%20auditoría%20gratuita%20de%20mi%20negocio" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-neutral-300 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                Hablar por WhatsApp
             </a>
         </div>
     </header>
 
-    <!-- SECCIÓN 2: LA SOLUCIÓN (Glassmorphism B2B) -->
-    <section id="solucion" class="px-6 py-24 max-w-6xl mx-auto relative z-10">
+    <!-- SECCIÓN DE PRECIOS (Optimizada para CRO y Transparencia) -->
+    <section id="precios" class="px-6 py-20 max-w-5xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Agentes de IA: Su equipo de primera línea, 24/7</h2>
-            <p class="text-neutral-400 text-lg">Automatice la captación y el soporte sin perder la calidez humana.</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Inversión Clara. Retorno Medible.</h2>
+            <p class="text-neutral-400 text-lg">En Nova IA no cobramos por horas de humo, cobramos por infraestructura comercial.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Tarjeta 1: Ventas -->
-            <div class="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl hover:bg-white/[0.06] transition-all">
-                <div class="w-12 h-12 rounded-lg bg-brand-500/20 border border-brand-500/30 flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <!-- PLAN 1: DESARROLLO WEB -->
+            <div class="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.1] backdrop-blur-xl relative flex flex-col hover:border-brand-500/50 transition-colors">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Web de Alta Conversión</h3>
+                    <p class="text-neutral-400 text-sm">El embudo digital perfecto para PYMEs.</p>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Ventas y Cualificación</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">
-                    Conectado a su WhatsApp. Responde FAQs, califica el presupuesto del cliente y agenda reuniones directamente en el calendario de sus vendedores.
-                </p>
+                <div class="mb-6">
+                    <span class="text-5xl font-extrabold text-white">$500.000</span>
+                    <span class="text-neutral-500 font-medium"> COP</span>
+                    <p class="text-xs text-green-400 mt-2 font-semibold">✓ Pago único. Sin mensualidades ocultas.</p>
+                </div>
+                
+                <!-- Gatillo de Velocidad (CRO) -->
+                <div class="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-brand-500/10 border border-brand-500/30 rounded-lg text-brand-300 text-sm font-bold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Entrega garantizada en 3 días
+                </div>
+
+                <ul class="space-y-4 mb-8 flex-1 text-sm text-neutral-300">
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Diseño UX/UI enfocado en ventas reales</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Carga ultrarrápida optimizada para SEO</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Botones de WhatsApp nativos integrados</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Adaptable 100% a celulares (Responsive)</li>
+                </ul>
+                <a href="https://wa.me/573112351285?text=Hola,%20quiero%20la%20Web%20de%20Alta%20Conversión%20por%20$500.000%20en%203%20días" target="_blank" class="w-full py-4 rounded-xl font-bold text-center text-white bg-white/10 hover:bg-white/20 border border-white/10 transition-colors">
+                    Solicitar Desarrollo Web
+                </a>
             </div>
 
-            <!-- Tarjeta 2: Soporte -->
-            <div class="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl hover:bg-white/[0.06] transition-all">
-                <div class="w-12 h-12 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <!-- PLAN 2: AGENTE DE IA (Destacado) -->
+            <div class="p-8 rounded-3xl bg-gradient-to-b from-brand-900/40 to-neutral-900 border border-brand-500/30 backdrop-blur-xl relative flex flex-col shadow-[0_0_30px_rgba(37,99,235,0.15)] transform md:-translate-y-4">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                    El más rentable
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Soporte Técnico L1</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">
-                    Resuelve incidencias al instante consultando su base de datos interna. Escala al humano solo cuando es necesario, reduciendo tickets en un 60%.
-                </p>
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Agente de IA Autónomo</h3>
+                    <p class="text-brand-200 text-sm">Su mejor empleado. Trabaja 24/7/365.</p>
+                </div>
+                <div class="mb-4">
+                    <span class="text-5xl font-extrabold text-white">$2.000.000</span>
+                    <span class="text-brand-300 font-medium"> COP</span>
+                    <p class="text-xs text-white mt-2 font-semibold">Pago único por desarrollo e instalación.</p>
+                </div>
+
+                <!-- Desglose de Mensualidad con Transparencia Radical -->
+                <div class="mb-8 p-4 rounded-xl bg-black/40 border border-white/5">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-sm font-bold text-brand-400">+ $150.000 COP / mes</span>
+                        <span class="text-xs bg-white/10 text-neutral-300 px-2 py-1 rounded">Mantenimiento</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-400 leading-relaxed mt-2">
+                        <strong class="text-neutral-300">Transparencia Radical:</strong> Usted paga únicamente el costo real de los servidores y tokens de la IA, más un 10% por nuestra gestión operativa. Sin sobrecostos ocultos.
+                    </p>
+                </div>
+
+                <ul class="space-y-4 mb-8 flex-1 text-sm text-neutral-200">
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Conexión directa a su WhatsApp o Web</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Respuesta en menos de 3 segundos</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Calificación automática de leads fríos</li>
+                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Entrenamiento con los datos de su empresa</li>
+                </ul>
+                <a href="https://wa.me/573112351285?text=Hola,%20me%20interesa%20integrar%20el%20Agente%20de%20IA%20de%20$2.000.000" target="_blank" class="btn-clay w-full py-4 rounded-xl font-bold text-center text-white bg-gradient-to-b from-brand-500 to-brand-600">
+                    Implementar Agente IA
+                </a>
             </div>
 
-            <!-- Tarjeta 3: Web -->
-            <div class="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl hover:bg-white/[0.06] transition-all">
-                <div class="w-12 h-12 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Web de Alta Conversión</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">
-                    No hacemos "folletos digitales". Diseñamos embudos web ultrarrápidos optimizados para convertir visitantes en clientes reales.
-                </p>
-            </div>
         </div>
     </section>
 
-    <!-- SECCIÓN 2.5: PRUEBA SOCIAL Y RESULTADOS (Testimonios CRO) -->
-    <section class="px-6 py-20 max-w-7xl mx-auto relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Resultados con Datos</h2>
-            <p class="text-neutral-400 text-lg">El impacto real de automatizar su operativa comercial.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Testimonio 1: Foco en Ventas y Velocidad -->
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] relative hover:bg-white/[0.04] transition-colors">
-                <!-- Estrellas -->
-                <div class="flex gap-1 mb-6 text-brand-500">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                </div>
-                <p class="text-neutral-300 mb-8 leading-relaxed">
-                    "Antes perdíamos clientes porque escribían a las 9 PM y nadie respondía. Desde que implementamos el Agente de Ventas de Nova IA, amanecemos con 3 a 5 reuniones ya calificadas y agendadas en el calendario. El ROI se pagó solo en la primera semana."
-                </p>
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-800 flex items-center justify-center font-bold text-sm">CM</div>
-                    <div>
-                        <h4 class="font-semibold text-white text-sm">Carlos M.</h4>
-                        <p class="text-xs text-neutral-500">Gerente Comercial, Sector Inmobiliario</p>
-                    </div>
+    <!-- SECCIÓN DE CONFIANZA (Garantías) -->
+    <section class="border-y border-white/5 bg-neutral-900/30">
+        <div class="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                <div>
+                    <h4 class="font-bold text-white">Despliegue Rápido</h4>
+                    <p class="text-sm text-neutral-400">Páginas en 3 días. IA en tiempo récord.</p>
                 </div>
             </div>
-
-            <!-- Testimonio 2: Foco en Soporte y Ahorro de Horas -->
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] relative hover:bg-white/[0.04] transition-colors">
-                <div class="flex gap-1 mb-6 text-brand-500">
-                    <!-- 5 estrellas SVG (mismo código) -->
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                </div>
-                <p class="text-neutral-300 mb-8 leading-relaxed">
-                    "Redujimos el tiempo de respuesta de 3 horas a 2 segundos. El agente de soporte resuelve el 60% de las dudas técnicas frecuentes de nuestros clientes sin intervención humana. Nos ha ahorrado más de 40 horas a la semana."
-                </p>
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-800 flex items-center justify-center font-bold text-sm">LG</div>
-                    <div>
-                        <h4 class="font-semibold text-white text-sm">Laura G.</h4>
-                        <p class="text-xs text-neutral-500">Directora de Operaciones, Logística</p>
-                    </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                <div>
+                    <h4 class="font-bold text-white">Transparencia Total</h4>
+                    <p class="text-sm text-neutral-400">Sin letras pequeñas ni costos sorpresa.</p>
                 </div>
             </div>
-
-            <!-- Testimonio 3: Foco en Desarrollo Web y Conversión -->
-            <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] relative hover:bg-white/[0.04] transition-colors">
-                <div class="flex gap-1 mb-6 text-brand-500">
-                    <!-- 5 estrellas SVG (mismo código) -->
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                </div>
-                <p class="text-neutral-300 mb-8 leading-relaxed">
-                    "Teníamos una web 'bonita' pero que no generaba contactos. Nova IA reconstruyó nuestro embudo digital y la tasa de conversión subió un 45% en el primer mes. Ellos entienden de negocios y rentabilidad, no solo de código."
-                </p>
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center font-bold text-sm">AF</div>
-                    <div>
-                        <h4 class="font-semibold text-white text-sm">Andrés F.</h4>
-                        <p class="text-xs text-neutral-500">CEO, Consultoría B2B</p>
-                    </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></div>
+                <div>
+                    <h4 class="font-bold text-white">Soporte Humano</h4>
+                    <p class="text-sm text-neutral-400">Acompañamiento B2B real en Colombia.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN 3: CIERRE B2B (Métricas y Call to Action) -->
-    <section class="border-t border-white/10 bg-neutral-900/50">
-        <div class="px-6 py-20 max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-6">¿Listo para escalar su operativa?</h2>
-            <p class="text-neutral-400 mb-10 text-lg">
-                Agende una consultoría gratuita de 15 minutos. Analizaremos sus procesos y le mostraremos dónde la IA puede generarle mayor rentabilidad en 30 días.
-            </p>
-            <!-- BOTÓN WHATSAPP 3: CIERRE -->
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20agendar%20una%20consultoría%20con%20Nova%20IA" target="_blank" class="btn-clay inline-block px-10 py-4 rounded-xl font-bold text-white bg-gradient-to-b from-brand-500 to-brand-600 text-lg">
-                Hablar con un experto por WhatsApp
-            </a>
-            <p class="mt-6 text-xs text-neutral-500">Sin compromisos. Respuestas en menos de 5 minutos.</p>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-8 text-center border-t border-white/5">
+    <footer class="py-12 text-center">
         <p class="text-neutral-500 text-sm">© 2026 Nova IA. Tecnología con Rostro, Resultados con Datos.</p>
     </footer>
 
