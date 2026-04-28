@@ -1,6 +1,6 @@
 # Nova IA - Frontend Web 🚀
 
-Repositorio oficial del sitio web B2B de **Nova IA**, agencia especializada en integración de Agentes de IA autónomos y Desarrollo Web de alta conversión en Colombia.
+Repositorio oficial del sitio web que vende SaaS de **Nova IA**, agencia especializada en integración de Agentes de IA autónomos y Desarrollo Web de Landing pages en Colombia.
 
 ## 🧠 Filosofía de la Marca
 **"Tecnología con Rostro, Resultados con Datos"**
