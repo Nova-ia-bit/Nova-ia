@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth dark"> <head>
+<html lang="es" class="scroll-smooth dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova IA | Agentes de Inteligencia Artificial y Web B2B</title>
@@ -9,7 +10,7 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class', // Activamos modo oscuro por clase
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: { brand: { 500: '#2563eb', 600: '#1d4ed8', 50: '#eff6ff', 100: '#dbeafe' } }
@@ -19,8 +20,14 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease, color 0.5s ease; }
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease; }
         
+        /* Lógica original de traducción y moneda */
+        body[data-lang="es"] .lang-en { display: none !important; }
+        body[data-lang="en"] .lang-es { display: none !important; }
+        body[data-currency="cop"] .curr-usd { display: none !important; }
+        body[data-currency="usd"] .curr-cop { display: none !important; }
+
         #vanta-bg {
             position: fixed;
             top: 0; left: 0;
@@ -28,134 +35,176 @@
             z-index: -1;
         }
 
-        /* Estilos para el Glassmorphism dinámico */
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .dark .glass-card {
-            background: rgba(15, 23, 42, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body[data-lang="es"] .lang-en { display: none !important; }
-        body[data-lang="en"] .lang-es { display: none !important; }
-        body[data-currency="cop"] .curr-usd { display: none !important; }
-        body[data-currency="usd"] .curr-cop { display: none !important; }
+        .dark .glass-card { background: rgba(15, 23, 42, 0.4); }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+<body data-lang="es" data-currency="cop" class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
 
     <div id="vanta-bg"></div>
 
     <div class="fixed top-24 right-4 z-50 flex flex-col gap-2">
-        <div class="flex bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg overflow-hidden">
-            <button onclick="document.body.setAttribute('data-lang', 'es')" class="px-3 py-2 text-xs font-bold hover:bg-brand-500 hover:text-white transition-colors border-r border-slate-200 dark:border-slate-700">ESP</button>
-            <button onclick="document.body.setAttribute('data-lang', 'en')" class="px-3 py-2 text-xs font-bold hover:bg-brand-500 hover:text-white transition-colors">ENG</button>
+        <div class="flex bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg overflow-hidden text-[10px] font-bold">
+            <button onclick="document.body.setAttribute('data-lang', 'es')" class="px-3 py-2 hover:bg-brand-500 hover:text-white transition-colors border-r dark:border-slate-800">ESP</button>
+            <button onclick="document.body.setAttribute('data-lang', 'en')" class="px-3 py-2 hover:bg-brand-500 hover:text-white transition-colors">ENG</button>
         </div>
-        
-        <button onclick="toggleTheme()" class="p-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
-            <span id="theme-icon-light" class="hidden dark:block text-yellow-400">☀️</span>
-            <span id="theme-icon-dark" class="block dark:hidden text-slate-700">🌙</span>
-        </button>
+        <div class="flex bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg overflow-hidden text-[10px] font-bold">
+            <button onclick="setTheme('light')" class="px-3 py-2 hover:bg-brand-500 hover:text-white transition-colors border-r dark:border-slate-800">LIGHT</button>
+            <button onclick="setTheme('dark')" class="px-3 py-2 hover:bg-brand-500 hover:text-white transition-colors">DARK</button>
+        </div>
     </div>
 
-    <nav class="fixed top-0 w-full bg-white/70 dark:bg-slate-950/70 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-40">
+    <nav class="fixed top-0 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-40">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="font-bold text-xl flex items-center gap-2 dark:text-white">
+            <div class="font-bold text-xl flex items-center gap-2">
                 <div class="w-3 h-3 bg-brand-500 rounded-full animate-pulse"></div> Nova IA
             </div>
-            <div class="flex gap-6 items-center">
-                <a href="#precios" class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-500 transition-colors">
+            <div class="flex gap-4 sm:gap-8 text-sm font-semibold">
+                <a href="#precios" class="hover:text-brand-500 transition-colors">
                     <span class="lang-es">Precios</span><span class="lang-en">Pricing</span>
                 </a>
-                <a href="#contacto" class="text-sm font-semibold text-brand-600 bg-brand-50 dark:bg-brand-500/10 px-4 py-2 rounded-lg">
-                    <span class="lang-es">Contacto</span><span class="lang-en">Contact</span>
+                <a href="#contacto" class="text-brand-600 dark:text-brand-400">
+                    <span class="lang-es">Contacto</span><span class="lang-en">Contact Us</span>
                 </a>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <header class="pt-32 pb-16 px-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight dark:text-white">
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
                     <span class="lang-es">Tecnología que multiplica ventas.</span>
                     <span class="lang-en">Technology that multiplies sales.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10">
-                    <span class="lang-es">Construimos Sitios Web de Alta Conversión y Agentes de IA que atienden clientes 24/7.</span>
-                    <span class="lang-en">We build High-Conversion Websites and AI Agents that serve clients 24/7.</span>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">
+                    <span class="lang-es">Construimos su Sitio Web de Alta Conversión y configuramos Agentes de IA Autónomos para que su negocio capte y atienda clientes 24/7.</span>
+                    <span class="lang-en">We build High-Conversion Websites and configure Autonomous AI Agents so your business can capture and serve clients 24/7.</span>
                 </p>
-                <div class="flex gap-4">
-                    <a href="#precios" class="px-8 py-4 rounded-xl font-bold text-white bg-brand-600 shadow-lg shadow-brand-500/30 hover:-translate-y-1 transition-all">
-                        Empezar Ahora
-                    </a>
-                </div>
+                <a href="#precios" class="inline-block px-8 py-4 rounded-xl font-bold text-white bg-brand-600 hover:scale-105 transition-transform shadow-xl shadow-brand-500/20">
+                    <span class="lang-es">Ver Planes y Precios ↓</span><span class="lang-en">View Plans & Pricing ↓</span>
+                </a>
             </div>
-            <div class="h-[450px] w-full rounded-3xl overflow-hidden glass-card">
+            <div class="h-[400px] lg:h-[500px] w-full rounded-3xl overflow-hidden glass-card">
                 <spline-viewer url="https://prod.spline.design/DX2OP6Cu6sDa3t9H7ZrOLnf1/scene.splinecode"></spline-viewer>
             </div>
         </div>
     </header>
 
-    <section id="precios" class="py-24 px-6 border-y border-slate-200 dark:border-slate-800 bg-white/30 dark:bg-slate-900/30">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div class="p-8 rounded-3xl glass-card flex flex-col hover:border-brand-500 transition-colors group">
-                <h3 class="text-2xl font-bold mb-4">Plan Esencial</h3>
-                <div class="text-4xl font-black mb-6 curr-cop">$250k</div>
-                <div class="text-4xl font-black mb-6 curr-usd">$65</div>
-                <ul class="space-y-3 text-slate-600 dark:text-slate-400 mb-8 flex-1">
-                    <li>✅ Landing Page Pro</li>
-                    <li>✅ 100% Mobile Ready</li>
-                    <li>✅ Hosting de por vida</li>
-                </ul>
-                <button class="w-full py-3 rounded-xl bg-slate-900 dark:bg-white dark:text-slate-950 font-bold group-hover:bg-brand-600 group-hover:text-white transition-all text-white">Elegir</button>
-            </div>
-
-            <div class="p-8 rounded-3xl bg-brand-600 text-white shadow-2xl shadow-brand-600/20 transform md:-translate-y-4">
-                <div class="text-xs font-bold uppercase mb-2 opacity-80">Recomendado</div>
-                <h3 class="text-2xl font-bold mb-4">Plan Escala</h3>
-                <div class="text-4xl font-black mb-6 curr-cop">$1.5M</div>
-                <div class="text-4xl font-black mb-6 curr-usd">$375</div>
-                <ul class="space-y-3 mb-8 flex-1 opacity-90">
-                    <li>✨ Todo lo esencial</li>
-                    <li>🤖 Asistente IA 24/7</li>
-                    <li>📈 Business Analytics</li>
-                </ul>
-                <button class="w-full py-3 rounded-xl bg-white text-brand-600 font-bold hover:bg-slate-100 transition-colors">Elegir Plan</button>
-            </div>
-
-            <div class="p-8 rounded-3xl glass-card flex flex-col text-center relative overflow-hidden border-2 border-slate-200 dark:border-slate-700">
-                <div class="h-32 mb-4">
-                    <spline-viewer url="https://prod.spline.design/PcjNgxQRc2HlYXqSCVsXfq1z/scene.splinecode"></spline-viewer>
+    <section id="precios" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-6">
+                    <span class="lang-es">Precios Justos</span><span class="lang-en">Fair Prices</span>
+                </h2>
+                <div class="inline-flex bg-slate-200 dark:bg-slate-800 p-1 rounded-lg">
+                    <button onclick="document.body.setAttribute('data-currency', 'cop')" class="px-4 py-1 rounded-md text-xs font-bold focus:bg-white dark:focus:bg-slate-700 shadow-sm">COP</button>
+                    <button onclick="document.body.setAttribute('data-currency', 'usd')" class="px-4 py-1 rounded-md text-xs font-bold focus:bg-white dark:focus:bg-slate-700">USD</button>
                 </div>
-                <h3 class="text-2xl font-bold mb-2">Agentes IA</h3>
-                <p class="text-sm text-slate-500 mb-6">Automatización total a medida.</p>
-                <button class="w-full py-3 rounded-xl border-2 border-slate-900 dark:border-white font-bold hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 transition-all">Consultar</button>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl glass-card border border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-bold mb-4">Plan Esencial</h3>
+                    <div class="text-3xl font-black mb-6">
+                        <span class="curr-cop">$250.000</span><span class="curr-usd">$65</span>
+                    </div>
+                    <ul class="text-sm space-y-3 mb-8 text-slate-500">
+                        <li>✅ <span class="lang-es">Diseño de alto impacto</span><span class="lang-en">High impact design</span></li>
+                        <li>✅ <span class="lang-es">100% optimizado móvil</span><span class="lang-en">100% mobile optimized</span></li>
+                        <li>⚡ <span class="lang-es">Entrega en 3 días</span><span class="lang-en">3 days delivery</span></li>
+                    </ul>
+                    <a href="https://wa.me/573112351285" class="block w-full py-3 text-center rounded-xl bg-brand-600 text-white font-bold text-sm">Elegir Plan</a>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-brand-600 text-white shadow-2xl transform md:-translate-y-4">
+                    <h3 class="text-xl font-bold mb-4">Plan Escala</h3>
+                    <div class="text-3xl font-black mb-6">
+                        <span class="curr-cop">$1.500.000</span><span class="curr-usd">$375</span>
+                    </div>
+                    <ul class="text-sm space-y-3 mb-8 opacity-90">
+                        <li>✨ <span class="lang-es">Todo el Plan Esencial</span><span class="lang-en">Everything in Essential</span></li>
+                        <li>🤖 <span class="lang-es">Asistente IA 24/7</span><span class="lang-en">24/7 AI Assistant</span></li>
+                        <li>✅ <span class="lang-es">Google Analytics</span><span class="lang-en">Google Analytics</span></li>
+                    </ul>
+                    <a href="https://wa.me/573112351285" class="block w-full py-3 text-center rounded-xl bg-white text-brand-600 font-bold text-sm">Elegir Plan</a>
+                </div>
+
+                <div class="p-8 rounded-3xl glass-card border-2 border-brand-500/30 flex flex-col items-center text-center">
+                    <div class="h-32 w-full mb-4">
+                        <spline-viewer url="https://prod.spline.design/PcjNgxQRc2HlYXqSCVsXfq1z/scene.splinecode"></spline-viewer>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Agentes de IA</h3>
+                    <div class="text-2xl font-black mb-4">
+                        <span class="curr-cop">$2M - $6M</span><span class="curr-usd">$500 - $1.5K</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-6">Automatización a medida para empresas.</p>
+                    <a href="https://wa.me/573112351285" class="block w-full py-3 text-center rounded-xl border-2 border-slate-900 dark:border-white font-bold text-sm">Cotizar</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-slate-500 text-xs">
-        © 2026 Nova IA. Tecnología con Rostro, Resultados con Datos.
+    <section class="py-20 px-6 bg-slate-100/50 dark:bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Resultados con Datos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <p class="text-sm italic text-slate-600 dark:text-slate-400">"Desde que implementamos el Agente de Ventas de Nova IA, amanecemos con 3 a 5 reuniones ya calificadas."</p>
+                    <div class="mt-4 font-bold text-sm">Carlos M. <span class="font-normal opacity-60">- Gerente Comercial</span></div>
+                </div>
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <p class="text-sm italic text-slate-600 dark:text-slate-400">"Redujimos el tiempo de respuesta de 3 horas a 2 segundos. Nos ha ahorrado más de 40 horas a la semana."</p>
+                    <div class="mt-4 font-bold text-sm">Laura G. <span class="font-normal opacity-60">- Dir. de Operaciones</span></div>
+                </div>
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <p class="text-sm italic text-slate-600 dark:text-slate-400">"Teníamos una web 'bonita' que no generaba contactos. La tasa de conversión subió un 45% el primer mes."</p>
+                    <div class="mt-4 font-bold text-sm">Andrés F. <span class="font-normal opacity-60">- CEO Consultoría</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Garantía de Satisfacción</h2>
+        <p class="text-slate-600 dark:text-slate-400 mb-12 text-sm leading-relaxed">
+            **0% de anticipo en el Plan Esencial.** Primero diseñamos y construimos tu proyecto completo antes de que pagues. Si algo no te convence, hacemos todas las revisiones necesarias. Protegemos tu inversión porque creemos en nuestra calidad.
+        </p>
+
+        <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-left">
+            <form action="https://formspree.io/f/mkgogpne" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="Nombre" placeholder="Nombre" required class="p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 text-sm">
+                    <input type="text" name="Apellidos" placeholder="Apellidos" required class="p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 text-sm">
+                </div>
+                <input type="email" name="Email" placeholder="Tu Email" required class="w-full p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 text-sm">
+                <input type="tel" name="WhatsApp" placeholder="Número de WhatsApp" required class="w-full p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 text-sm">
+                <select name="Tipo_Negocio" required class="w-full p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 text-sm">
+                    <option value="">Tipo de Negocio...</option>
+                    <option value="E-Commerce">Tienda Online</option>
+                    <option value="Servicios">Servicios B2B</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <button type="submit" class="w-full py-4 bg-brand-600 text-white font-bold rounded-xl shadow-lg">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-slate-500 text-xs border-t dark:border-slate-900">
+        <p>© 2026 Nova IA. Tecnología con Rostro, Resultados con Datos.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-    
     <script>
         let vantaEffect;
-
         function initVanta() {
             const isDark = document.documentElement.classList.contains('dark');
-            
-            // Si ya existe un efecto, lo destruimos antes de crear el nuevo
             if (vantaEffect) vantaEffect.destroy();
-
             vantaEffect = VANTA.NET({
                 el: "#vanta-bg",
                 mouseControls: true,
@@ -166,19 +215,17 @@
                 scale: 1.00,
                 scaleMobile: 1.00,
                 color: isDark ? 0x2563eb : 0x3f5efb,
-                backgroundColor: isDark ? 0x020617 : 0xf8fafc, // Slate-950 en dark, Slate-50 en light
+                backgroundColor: isDark ? 0x020617 : 0xf8fafc,
                 points: isDark ? 12.00 : 8.00,
                 maxDistance: 20.00,
                 spacing: 16.00
             });
         }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            initVanta(); // Reiniciamos Vanta con los nuevos colores
+        function setTheme(mode) {
+            if (mode === 'dark') document.documentElement.classList.add('dark');
+            else document.documentElement.classList.remove('dark');
+            initVanta();
         }
-
-        // Iniciar al cargar
         initVanta();
     </script>
 </body>
