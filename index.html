@@ -73,7 +73,9 @@
     body.currency-usd span.currency-usd { display: inline; }
   </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+
+<!-- EL SECRETO ESTÁ AQUÍ: Cargamos ES y COP por defecto para que las animaciones no se rompan -->
+<body class="antialiased selection:bg-white selection:text-black lang-es currency-cop">
 
   <!-- ================= OVERLAYS ARQUITECTÓNICOS ================= -->
   <div class="fixed inset-0 z-[-2] bg-brand-black">
@@ -100,9 +102,9 @@
       
       <!-- Controles de Idioma Manuales -->
       <div class="font-mono text-[10px] text-gray-500 flex gap-4 items-center">
-        <button id="btn-lang-es" onclick="setLanguage('es')" class="hover:text-white transition-colors">ESP</button>
+        <button id="btn-lang-es" onclick="setLanguage('es')" class="text-white hover:text-white transition-colors">ESP</button>
         <span class="text-white/20">|</span>
-        <button id="btn-lang-en" onclick="setLanguage('en')" class="hover:text-white transition-colors">ENG</button>
+        <button id="btn-lang-en" onclick="setLanguage('en')" class="text-gray-500 hover:text-white transition-colors">ENG</button>
       </div>
     </div>
   </nav>
@@ -155,8 +157,8 @@
         
         <!-- Toggle Manual de Moneda -->
         <div class="mt-8 flex gap-0 font-mono text-xs border border-white/20 inline-flex">
-          <button id="btn-curr-cop" onclick="setCurrency('cop')" class="px-6 py-2 border-r border-white/20 transition-colors">COP</button>
-          <button id="btn-curr-usd" onclick="setCurrency('usd')" class="px-6 py-2 transition-colors">USD</button>
+          <button id="btn-curr-cop" onclick="setCurrency('cop')" class="bg-white/10 text-white px-6 py-2 border-r border-white/20 transition-colors">COP</button>
+          <button id="btn-curr-usd" onclick="setCurrency('usd')" class="text-gray-500 hover:bg-white/5 px-6 py-2 transition-colors">USD</button>
         </div>
       </div>
       
@@ -605,6 +607,9 @@
       document.getElementById('btn-lang-es').classList.toggle('text-gray-500', lang !== 'es');
       document.getElementById('btn-lang-en').classList.toggle('text-white', lang === 'en');
       document.getElementById('btn-lang-en').classList.toggle('text-gray-500', lang !== 'en');
+      
+      // IMPORTANTE: Refrescar las animaciones si el texto cambia de tamaño
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
     }
 
     function setCurrency(currency) {
@@ -625,42 +630,36 @@
         btnCop.classList.remove('bg-white/10', 'text-white');
         btnCop.classList.add('text-gray-500', 'hover:bg-white/5');
       }
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
     }
 
-    // --- AQUÍ ESTÁ LA NUEVA CONDICIÓN DE PAÍSES HISPANOHABLANTES ---
     async function initGeolocation() {
       try {
         const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
         
-        // Lista de códigos ISO de países hispanohablantes (excluyendo Colombia que tiene su propia regla)
         const spanishSpeakingCountries = [
           'AR', 'BO', 'CL', 'CR', 'CU', 'DO', 'EC', 'SV', 'GQ', 
           'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'ES', 'UY', 'VE'
         ];
         
         if (data.country === 'CO') {
-          // 1. Es Colombia: Español + Pesos Colombianos
           setLanguage('es');
           setCurrency('cop');
         } else if (spanishSpeakingCountries.includes(data.country)) {
-          // 2. Es Hispanohablante (México, España, etc): Español + Dólares
           setLanguage('es');
           setCurrency('usd');
         } else {
-          // 3. Cualquier otro país (USA, UK, etc): Inglés + Dólares
           setLanguage('en');
           setCurrency('usd');
         }
       } catch (error) {
-        // En caso de que el usuario tenga un bloqueador de rastreo o falle la conexión
-        console.warn("No se pudo detectar la IP, cargando configuración por defecto.");
-        setLanguage('es');
-        setCurrency('cop');
+        console.warn("No se pudo detectar la IP, se mantiene el diseño por defecto.");
       }
     }
 
-    // Ejecutar detección al cargar
+    // Ejecutar detección
     initGeolocation();
 
     // --- ANIMACIONES Y EXPERIENCIA (Lenis + GSAP) ---
