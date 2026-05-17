@@ -34,9 +34,6 @@
   </script>
 
   <style>
-    /* Materialidad: Fondo oscuro general (SIN overflow hidden aquí para no romper GSAP) */
-    body { background-color: #050505; color: #F7F7F5; }
-    
     /* Scrollbar minimalista industrial */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #050505; }
@@ -74,18 +71,18 @@
   </style>
 </head>
 
-<!-- Cargamos ES y COP por defecto para que la pantalla NUNCA se quede en blanco -->
-<body class="antialiased selection:bg-white selection:text-black lang-es currency-cop">
+<!-- FORZAMOS EL FONDO OSCURO Y EL IDIOMA POR DEFECTO PARA EVITAR PANTALLAS EN BLANCO -->
+<body style="background-color: #050505; color: #F7F7F5;" class="antialiased selection:bg-white selection:text-black lang-es currency-cop relative">
 
-  <!-- WRAPPER PRINCIPAL: Esto evita el desbordamiento sin romper las animaciones -->
+  <!-- WRAPPER PRINCIPAL -->
   <main class="relative w-full overflow-hidden">
 
     <!-- ================= OVERLAYS ARQUITECTÓNICOS ================= -->
-    <div class="fixed inset-0 z-[-2] bg-brand-black">
+    <div class="fixed inset-0 z-[-2] bg-[#050505]">
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4vw_4vw]"></div>
     </div>
     <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
-    <div class="fixed inset-0 z-50 pointer-events-none overflow-hidden opacity-10">
+    <div class="fixed inset-0 z-50 pointer-events-none overflow-hidden opacity-10 mix-blend-overlay">
       <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:100%_3px]"></div>
     </div>
 
@@ -104,10 +101,10 @@
         </div>
         
         <!-- Controles de Idioma Manuales -->
-        <div class="font-mono text-[10px] text-gray-500 flex gap-4 items-center">
-          <button id="btn-lang-es" onclick="setLanguage('es')" class="text-white hover:text-white transition-colors">ESP</button>
+        <div class="font-mono text-[10px] text-gray-500 flex gap-4 items-center relative z-50">
+          <button id="btn-lang-es" onclick="setLanguage('es')" class="text-white hover:text-white transition-colors cursor-pointer">ESP</button>
           <span class="text-white/20">|</span>
-          <button id="btn-lang-en" onclick="setLanguage('en')" class="text-gray-500 hover:text-white transition-colors">ENG</button>
+          <button id="btn-lang-en" onclick="setLanguage('en')" class="text-gray-500 hover:text-white transition-colors cursor-pointer">ENG</button>
         </div>
       </div>
     </nav>
@@ -136,8 +133,8 @@
           </p>
         </div>
         
-        <div class="mt-16 gsap-reveal">
-          <a href="#precios" class="inline-flex flex-col md:flex-row items-center gap-4 border border-white/20 bg-white/5 hover:bg-white hover:text-black px-8 py-4 font-mono text-xs text-white uppercase tracking-widest transition-all duration-500 backdrop-blur-sm group">
+        <div class="mt-16 gsap-reveal relative z-10">
+          <a href="#precios" class="inline-flex flex-col md:flex-row items-center gap-4 border border-white/20 bg-white/5 hover:bg-white hover:text-black px-8 py-4 font-mono text-xs text-white uppercase tracking-widest transition-all duration-500 backdrop-blur-sm group cursor-pointer">
             <span class="lang-es">Ver Planes y Precios ↓</span>
             <span class="lang-en">View Plans & Pricing ↓</span>
           </a>
@@ -160,8 +157,8 @@
           
           <!-- Toggle Manual de Moneda -->
           <div class="mt-8 flex gap-0 font-mono text-xs border border-white/20 inline-flex relative z-10">
-            <button id="btn-curr-cop" onclick="setCurrency('cop')" class="bg-white/10 text-white px-6 py-2 border-r border-white/20 transition-colors">COP</button>
-            <button id="btn-curr-usd" onclick="setCurrency('usd')" class="text-gray-500 hover:bg-white/5 px-6 py-2 transition-colors">USD</button>
+            <button id="btn-curr-cop" onclick="setCurrency('cop')" class="bg-white/10 text-white px-6 py-2 border-r border-white/20 transition-colors cursor-pointer">COP</button>
+            <button id="btn-curr-usd" onclick="setCurrency('usd')" class="text-gray-500 hover:bg-white/5 px-6 py-2 transition-colors cursor-pointer">USD</button>
           </div>
         </div>
         
@@ -203,7 +200,7 @@
               </div>
             </div>
             
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Esencial" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Esencial" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10 cursor-pointer">
               <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
             </a>
             <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
@@ -250,7 +247,7 @@
               </div>
             </div>
             
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Escala" class="block w-full bg-white text-black text-center py-4 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all relative z-10">
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Escala" class="block w-full bg-white text-black text-center py-4 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all relative z-10 cursor-pointer">
               <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
             </a>
             <p class="text-[9px] font-mono text-gray-500 mt-4 text-center">
@@ -292,7 +289,7 @@
               </div>
             </div>
             
-            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20cotizar%20un%20Agente%20de%20IA" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20cotizar%20un%20Agente%20de%20IA" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10 cursor-pointer">
               <span class="lang-es">Contacte aquí con la empresa</span><span class="lang-en">Contact the company here</span>
             </a>
             <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
@@ -436,8 +433,8 @@
               </p>
             </div>
             <p class="mt-10 font-mono text-[10px] text-gray-600 border-t border-white/10 pt-6">
-              <span class="lang-es">*Consulta nuestros <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10">Términos y Condiciones</a> para conocer los detalles legales sobre devoluciones y exclusiones técnicas de la Inteligencia Artificial.</span>
-              <span class="lang-en">*Check our <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10">Terms and Conditions</a> for details about refunds and AI technical exclusions.</span>
+              <span class="lang-es">*Consulta nuestros <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10 cursor-pointer">Términos y Condiciones</a> para conocer los detalles legales sobre devoluciones y exclusiones técnicas de la Inteligencia Artificial.</span>
+              <span class="lang-en">*Check our <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10 cursor-pointer">Terms and Conditions</a> for details about refunds and AI technical exclusions.</span>
             </p>
           </div>
           
@@ -462,7 +459,7 @@
                 <span class="lang-es">¿Tienes un proyecto que no cabe en ningún plan? Tranquilo, agenda una cita por medio de WhatsApp.</span>
                 <span class="lang-en">Have a project that doesn't fit in any plan? Don't worry, schedule an appointment via WhatsApp.</span>
               </p>
-              <a href="https://wa.me/573112351285?text=Hola,%20tengo%20un%20proyecto%20especial" class="inline-block border border-white/20 bg-transparent px-8 py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+              <a href="https://wa.me/573112351285?text=Hola,%20tengo%20un%20proyecto%20especial" class="inline-block border border-white/20 bg-transparent px-8 py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10 cursor-pointer">
                 <span class="lang-es">Contactar a Nova IA</span>
                 <span class="lang-en">Contact Nova IA</span>
               </a>
@@ -534,12 +531,12 @@
           <div class="flex items-start gap-4 pt-4">
             <input type="checkbox" class="mt-1 bg-transparent border border-white/20 rounded-none appearance-none w-4 h-4 checked:bg-white transition-colors cursor-pointer shrink-0">
             <p class="font-mono text-[10px] text-gray-500 leading-relaxed">
-              <span class="lang-es">He leído y acepto la <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Política de Privacidad</a> y autorizo el tratamiento de mis datos según la Ley 1581 de 2012.</span>
-              <span class="lang-en">I accept the <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Privacy Policy</a> and authorize data processing.</span>
+              <span class="lang-es">He leído y acepto la <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors cursor-pointer">Política de Privacidad</a> y autorizo el tratamiento de mis datos según la Ley 1581 de 2012.</span>
+              <span class="lang-en">I accept the <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors cursor-pointer">Privacy Policy</a> and authorize data processing.</span>
             </p>
           </div>
           
-          <button type="submit" class="w-full bg-white text-black py-5 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all mt-4">
+          <button type="submit" class="w-full bg-white text-black py-5 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all mt-4 cursor-pointer">
             <span class="lang-es">Enviar Solicitud</span><span class="lang-en">Submit Request</span>
           </button>
         </form>
@@ -560,10 +557,10 @@
         </div>
         
         <div class="flex flex-col md:flex-row gap-4 md:gap-8 font-mono text-[10px] text-center">
-          <a href="politica-privacidad.html" class="text-gray-400 hover:text-white transition-colors relative z-10">
+          <a href="politica-privacidad.html" class="text-gray-400 hover:text-white transition-colors relative z-10 cursor-pointer">
             <span class="lang-es">📄 Política de Privacidad</span><span class="lang-en">📄 Privacy Policy</span>
           </a>
-          <a href="terminos-condiciones.html" class="text-gray-400 hover:text-white transition-colors relative z-10">
+          <a href="terminos-condiciones.html" class="text-gray-400 hover:text-white transition-colors relative z-10 cursor-pointer">
             <span class="lang-es">⚖️ Términos y Condiciones</span><span class="lang-en">⚖️ Terms & Conditions</span>
           </a>
         </div>
@@ -586,10 +583,10 @@
         </p>
       </div>
       <div class="flex gap-4 shrink-0 w-full md:w-auto">
-        <a href="politica-privacidad.html" class="w-full md:w-auto border border-white/20 bg-transparent px-6 py-3 font-mono text-[10px] text-white uppercase tracking-widest hover:bg-white/5 transition-colors text-center">
+        <a href="politica-privacidad.html" class="w-full md:w-auto border border-white/20 bg-transparent px-6 py-3 font-mono text-[10px] text-white uppercase tracking-widest hover:bg-white/5 transition-colors text-center cursor-pointer">
           <span class="lang-es">Leer Políticas</span><span class="lang-en">Read Policies</span>
         </a>
-        <button onclick="acceptCookies()" class="w-full md:w-auto bg-white text-black px-6 py-3 font-mono text-[10px] uppercase tracking-widest hover:bg-gray-200 transition-colors">
+        <button onclick="acceptCookies()" class="w-full md:w-auto bg-white text-black px-6 py-3 font-mono text-[10px] uppercase tracking-widest hover:bg-gray-200 transition-colors cursor-pointer">
           <span class="lang-es">Aceptar Todo</span><span class="lang-en">Accept All</span>
         </button>
       </div>
@@ -597,22 +594,26 @@
   </div>
 
   <!-- ================= SCRIPTS ================= -->
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- CDNs Actualizados a las versiones más seguras -->
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <script>
-    // FUNCIONES GLOBALES DE IDIOMA
+    // 1. FUNCIONES DE IDIOMA Y MONEDA
     function setLanguage(lang) {
       document.body.classList.remove('lang-es', 'lang-en');
       document.body.classList.add(`lang-${lang}`);
       
-      document.getElementById('btn-lang-es').classList.toggle('text-white', lang === 'es');
-      document.getElementById('btn-lang-es').classList.toggle('text-gray-500', lang !== 'es');
-      document.getElementById('btn-lang-en').classList.toggle('text-white', lang === 'en');
-      document.getElementById('btn-lang-en').classList.toggle('text-gray-500', lang !== 'en');
-      
-      setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 100);
+      const btnEs = document.getElementById('btn-lang-es');
+      const btnEn = document.getElementById('btn-lang-en');
+      if (btnEs && btnEn) {
+        btnEs.classList.toggle('text-white', lang === 'es');
+        btnEs.classList.toggle('text-gray-500', lang !== 'es');
+        btnEn.classList.toggle('text-white', lang === 'en');
+        btnEn.classList.toggle('text-gray-500', lang !== 'en');
+      }
+      if (typeof ScrollTrigger !== 'undefined') setTimeout(() => ScrollTrigger.refresh(), 100);
     }
 
     function setCurrency(currency) {
@@ -621,25 +622,26 @@
       
       const btnCop = document.getElementById('btn-curr-cop');
       const btnUsd = document.getElementById('btn-curr-usd');
-      
-      if (currency === 'cop') {
-        btnCop.classList.add('bg-white/10', 'text-white');
-        btnCop.classList.remove('text-gray-500', 'hover:bg-white/5');
-        btnUsd.classList.remove('bg-white/10', 'text-white');
-        btnUsd.classList.add('text-gray-500', 'hover:bg-white/5');
-      } else {
-        btnUsd.classList.add('bg-white/10', 'text-white');
-        btnUsd.classList.remove('text-gray-500', 'hover:bg-white/5');
-        btnCop.classList.remove('bg-white/10', 'text-white');
-        btnCop.classList.add('text-gray-500', 'hover:bg-white/5');
+      if (btnCop && btnUsd) {
+        if (currency === 'cop') {
+          btnCop.classList.add('bg-white/10', 'text-white');
+          btnCop.classList.remove('text-gray-500', 'hover:bg-white/5');
+          btnUsd.classList.remove('bg-white/10', 'text-white');
+          btnUsd.classList.add('text-gray-500', 'hover:bg-white/5');
+        } else {
+          btnUsd.classList.add('bg-white/10', 'text-white');
+          btnUsd.classList.remove('text-gray-500', 'hover:bg-white/5');
+          btnCop.classList.remove('bg-white/10', 'text-white');
+          btnCop.classList.add('text-gray-500', 'hover:bg-white/5');
+        }
       }
-      setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 100);
+      if (typeof ScrollTrigger !== 'undefined') setTimeout(() => ScrollTrigger.refresh(), 100);
     }
 
-    // EJECUTAR TODO SOLO CUANDO EL DOM ESTÉ LISTO (Evita pantallas en blanco)
+    // 2. EJECUTAR TODO CUANDO EL DOM ESTÉ SEGURO
     document.addEventListener("DOMContentLoaded", () => {
       
-      // 1. Iniciar Geolocalización
+      // Geolocalización
       async function initGeolocation() {
         try {
           const response = await fetch('https://ipapi.co/json/');
@@ -657,47 +659,58 @@
             setLanguage('en'); setCurrency('usd');
           }
         } catch (error) {
-          console.warn("No IP detected, keeping default (ES/COP)");
+          console.warn("API de IP bloqueada, cargando configuración segura.");
         }
       }
       initGeolocation();
 
-      // 2. Configurar Lenis (Scroll cinemático)
-      const lenis = new Lenis({
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
+      // Inicializar GSAP y Lenis con protección de errores
+      try {
+        const lenis = new Lenis({
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
 
-      // 3. Sincronizar Lenis con GSAP (LA CLAVE PARA QUE NO SE ROMPA EL SCROLL)
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
+        gsap.registerPlugin(ScrollTrigger);
 
-      // 4. Iniciar Animaciones GSAP (Usando autoAlpha es más seguro que opacity)
-      gsap.registerPlugin(ScrollTrigger);
-      
-      gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-        gsap.fromTo(elem, 
-          { y: 40, autoAlpha: 0 }, 
-          { y: 0, autoAlpha: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-        );
-      });
-      
-      gsap.utils.toArray('.gsap-stagger').forEach(container => {
-        gsap.fromTo(container.children,
-          { y: 40, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } }
-        );
-      });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
 
-      gsap.utils.toArray('.gsap-scale').forEach(elem => {
-        gsap.fromTo(elem,
-          { scale: 0.9, autoAlpha: 0 },
-          { scale: 1, autoAlpha: 1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-        );
-      });
+        // Animaciones con OPACITY (más seguro que autoAlpha si Tailwind tarda)
+        gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+          gsap.fromTo(elem, 
+            { y: 40, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
+          );
+        });
+        
+        gsap.utils.toArray('.gsap-stagger').forEach(container => {
+          gsap.fromTo(container.children,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } }
+          );
+        });
 
-      // 5. Cookies
+        gsap.utils.toArray('.gsap-scale').forEach(elem => {
+          gsap.fromTo(elem,
+            { scale: 0.9, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
+          );
+        });
+
+        // EL SECRETO: Observador que obliga a GSAP a recalcular si Tailwind hace cambios
+        const observer = new MutationObserver(() => {
+          ScrollTrigger.refresh();
+        });
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+        setTimeout(() => observer.disconnect(), 3000); // Detener el observador después de 3 seg
+
+      } catch (error) {
+        console.error("Error cargando librerías visuales:", error);
+      }
+
+      // Cookies
       setTimeout(() => {
         if(!localStorage.getItem('cookiesAccepted')) {
           document.getElementById('cookie-banner').classList.remove('translate-y-full');
