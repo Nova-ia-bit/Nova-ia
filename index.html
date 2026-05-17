@@ -34,8 +34,8 @@
   </script>
 
   <style>
-    /* Materialidad: Fondo oscuro general */
-    body { background-color: #050505; color: #F7F7F5; overflow-x: hidden; }
+    /* Materialidad: Fondo oscuro general (SIN overflow hidden aquí para no romper GSAP) */
+    body { background-color: #050505; color: #F7F7F5; }
     
     /* Scrollbar minimalista industrial */
     ::-webkit-scrollbar { width: 6px; }
@@ -74,498 +74,503 @@
   </style>
 </head>
 
-<!-- EL SECRETO ESTÁ AQUÍ: Cargamos ES y COP por defecto para que las animaciones no se rompan -->
+<!-- Cargamos ES y COP por defecto para que la pantalla NUNCA se quede en blanco -->
 <body class="antialiased selection:bg-white selection:text-black lang-es currency-cop">
 
-  <!-- ================= OVERLAYS ARQUITECTÓNICOS ================= -->
-  <div class="fixed inset-0 z-[-2] bg-brand-black">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4vw_4vw]"></div>
-  </div>
-  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
-  <div class="fixed inset-0 z-50 pointer-events-none overflow-hidden opacity-10 mix-blend-overlay">
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:100%_3px]"></div>
-  </div>
+  <!-- WRAPPER PRINCIPAL: Esto evita el desbordamiento sin romper las animaciones -->
+  <main class="relative w-full overflow-hidden">
 
-  <!-- ================= NAVEGACIÓN MODULAR ================= -->
-  <nav class="fixed top-0 w-full z-40 border-b border-white/10 bg-[#050505]/70 backdrop-blur-md">
-    <div class="container mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="font-mono text-white text-xs tracking-[0.2em] uppercase">[ Nova IA ]</div>
-      
-      <div class="hidden md:flex gap-8 font-mono text-[10px] text-gray-400 uppercase tracking-widest">
-        <a href="#precios" class="hover:text-white transition-colors">
-          <span class="lang-es">Ver Precios</span><span class="lang-en">Pricing</span>
-        </a>
-        <a href="#contacto" class="hover:text-white transition-colors">
-          <span class="lang-es">Contacto</span><span class="lang-en">Contact Us</span>
-        </a>
-      </div>
-      
-      <!-- Controles de Idioma Manuales -->
-      <div class="font-mono text-[10px] text-gray-500 flex gap-4 items-center">
-        <button id="btn-lang-es" onclick="setLanguage('es')" class="text-white hover:text-white transition-colors">ESP</button>
-        <span class="text-white/20">|</span>
-        <button id="btn-lang-en" onclick="setLanguage('en')" class="text-gray-500 hover:text-white transition-colors">ENG</button>
-      </div>
+    <!-- ================= OVERLAYS ARQUITECTÓNICOS ================= -->
+    <div class="fixed inset-0 z-[-2] bg-brand-black">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4vw_4vw]"></div>
     </div>
-  </nav>
-
-  <!-- ================= HERO CINEMÁTICO ================= -->
-  <section class="min-h-screen pt-32 pb-16 px-6 flex flex-col justify-center border-b border-white/10 relative">
-    <div class="container mx-auto max-w-7xl">
-      <div class="gsap-reveal overflow-hidden mb-6">
-        <p class="font-mono text-[10px] md:text-xs text-gray-500 uppercase tracking-[0.3em]">
-          <span class="lang-es">[ SYS.INIT_01 ] — Inteligencia Artificial y Web B2B</span>
-          <span class="lang-en">[ SYS.INIT_01 ] — Artificial Intelligence and B2B Web</span>
-        </p>
-      </div>
-      
-      <div class="gsap-reveal">
-        <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-sans font-medium tracking-tighter leading-[0.9] text-white">
-          <span class="lang-es">Tecnología que<br>multiplica ventas.</span>
-          <span class="lang-en">Technology that<br>multiplies sales.</span>
-        </h1>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-24 pt-8 border-t border-white/10 gsap-reveal">
-        <p class="text-gray-300 text-lg md:text-xl leading-relaxed font-sans">
-          <span class="lang-es">Construimos su Sitio Web de Alta Conversión y configuramos Agentes de IA Autónomos para que su negocio capte y atienda clientes 24/7.</span>
-          <span class="lang-en">We build High-Conversion Websites and configure Autonomous AI Agents so your business can capture and serve clients 24/7.</span>
-        </p>
-      </div>
-      
-      <div class="mt-16 gsap-reveal">
-        <a href="#precios" class="inline-flex flex-col md:flex-row items-center gap-4 border border-white/20 bg-white/5 hover:bg-white hover:text-black px-8 py-4 font-mono text-xs text-white uppercase tracking-widest transition-all duration-500 backdrop-blur-sm group">
-          <span class="lang-es">Ver Planes y Precios ↓</span>
-          <span class="lang-en">View Plans & Pricing ↓</span>
-        </a>
-      </div>
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
+    <div class="fixed inset-0 z-50 pointer-events-none overflow-hidden opacity-10">
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:100%_3px]"></div>
     </div>
-  </section>
 
-  <!-- ================= PRECIOS ================= -->
-  <section id="precios" class="py-32 border-b border-white/10 relative">
-    <div class="container mx-auto px-6 max-w-7xl">
-      <div class="mb-20 gsap-reveal">
-        <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-2">
-          <span class="lang-es">Precios Justos sin cláusulas ocultas</span>
-          <span class="lang-en">Fair Prices with no hidden clauses</span>
-        </h2>
-        <p class="font-mono text-gray-500 text-sm">
-          <span class="lang-es">Precios con transparencia radical, elige el plan que más se acomode a ti.</span>
-          <span class="lang-en">Radical transparency pricing, choose the plan that best suits you.</span>
-        </p>
+    <!-- ================= NAVEGACIÓN MODULAR ================= -->
+    <nav class="fixed top-0 w-full z-40 border-b border-white/10 bg-[#050505]/70 backdrop-blur-md">
+      <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="font-mono text-white text-xs tracking-[0.2em] uppercase">[ Nova IA ]</div>
         
-        <!-- Toggle Manual de Moneda -->
-        <div class="mt-8 flex gap-0 font-mono text-xs border border-white/20 inline-flex">
-          <button id="btn-curr-cop" onclick="setCurrency('cop')" class="bg-white/10 text-white px-6 py-2 border-r border-white/20 transition-colors">COP</button>
-          <button id="btn-curr-usd" onclick="setCurrency('usd')" class="text-gray-500 hover:bg-white/5 px-6 py-2 transition-colors">USD</button>
-        </div>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-white/10 gsap-stagger">
-        
-        <!-- PLAN ESENCIAL -->
-        <div class="border-b lg:border-b-0 lg:border-r border-white/10 p-10 flex flex-col bg-[#0a0a0a]/50 hover:bg-[#111]/80 transition-colors backdrop-blur-sm relative group">
-          <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-gray-600">[ MOD.01 ]</div>
-          <h3 class="text-2xl text-white font-sans tracking-tight">
-            <span class="lang-es">Plan Esencial (Landing Page)</span>
-            <span class="lang-en">Essential Plan (Landing Page)</span>
-          </h3>
-          
-          <div class="my-10">
-            <div class="text-5xl font-sans font-medium text-white tracking-tighter">
-              <span class="currency-cop">$250.000 <span class="text-sm text-gray-500 font-mono font-normal">COP</span></span>
-              <span class="currency-usd">$65 <span class="text-sm text-gray-500 font-mono font-normal">USD</span></span>
-            </div>
-          </div>
-          
-          <ul class="space-y-4 font-mono text-xs text-gray-400 mb-12 flex-1">
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Diseño de alto impacto</span><span class="lang-en">High impact design</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">100% optimizado para móviles</span><span class="lang-en">100% mobile optimized</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Formulario de WhatsApp incluido</span><span class="lang-en">WhatsApp form included</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Imágenes y contenido multimedia</span><span class="lang-en">Images & multimedia content</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">SEO básico on-page</span><span class="lang-en">Basic on-page SEO</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Certificado SSL & Privacidad</span><span class="lang-en">SSL Certificate & Privacy Policy</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">⚡</span> <span class="lang-es">Entrega en 5 días hábiles</span><span class="lang-en">Delivery in 5 business days</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">🌍</span> <span class="lang-es">Hosting por un mes incluido</span><span class="lang-en">1 month hosting included</span></li>
-          </ul>
-          
-          <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
-            <div class="text-white">
-              <span class="currency-cop">+ $40.000 COP / mes</span>
-              <span class="currency-usd">+ $10 USD / mo</span>
-            </div>
-            <div class="text-gray-600 mt-2">
-              <span class="lang-es">Mantenimiento y hosting</span><span class="lang-en">Maintenance and hosting</span>
-            </div>
-          </div>
-          
-          <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Esencial" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-            <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
+        <div class="hidden md:flex gap-8 font-mono text-[10px] text-gray-400 uppercase tracking-widest">
+          <a href="#precios" class="hover:text-white transition-colors">
+            <span class="lang-es">Ver Precios</span><span class="lang-en">Pricing</span>
           </a>
-          <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
-            <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
-            <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
-          </p>
+          <a href="#contacto" class="hover:text-white transition-colors">
+            <span class="lang-es">Contacto</span><span class="lang-en">Contact Us</span>
+          </a>
         </div>
         
-        <!-- PLAN ESCALA (Más Popular) -->
-        <div class="border-b lg:border-b-0 lg:border-r border-white/10 p-10 flex flex-col bg-white/5 backdrop-blur-xl relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-white text-black font-mono text-[9px] uppercase tracking-widest px-4 py-2">
-            <span class="lang-es">Más Popular</span><span class="lang-en">Most Popular</span>
-          </div>
-          <div class="absolute top-0 left-0 p-4 font-mono text-[10px] text-gray-400">[ MOD.02 ]</div>
-          <h3 class="text-2xl text-white font-sans tracking-tight mt-6">
-            <span class="lang-es">Plan Escala (Web + Analítica)</span>
-            <span class="lang-en">Scale Plan (Web + Analytics)</span>
-          </h3>
-          
-          <div class="my-10">
-            <div class="text-5xl font-sans font-medium text-white tracking-tighter">
-              <span class="currency-cop">$1.500.000 <span class="text-sm text-gray-400 font-mono font-normal">COP</span></span>
-              <span class="currency-usd">$375 <span class="text-sm text-gray-400 font-mono font-normal">USD</span></span>
-            </div>
-          </div>
-          
-          <ul class="space-y-4 font-mono text-xs text-gray-300 mb-12 flex-1">
-            <li class="flex items-start gap-3"><span class="text-white">✨</span> <span class="lang-es">Todo lo del Plan Esencial, más:</span><span class="lang-en">Everything in Essential, plus:</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Revisiones ilimitadas en el proceso</span><span class="lang-en">Unlimited revisions during process</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Panel administrable</span><span class="lang-en">Admin panel</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Ecosistema Business Analytics</span><span class="lang-en">Business Analytics ecosystem</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">🤖</span> <span class="lang-es">Asistente IA integrado 24/7</span><span class="lang-en">24/7 Integrated AI Assistant</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Sistema de Google Analytics</span><span class="lang-en">Google Analytics setup</span></li>
-            <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Diseño UI UX personalizado</span><span class="lang-en">UI UX personalized design</span></li>
-          </ul>
-          
-          <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
-            <div class="text-white">
-              <span class="currency-cop">+ $150.000 COP / mes</span>
-              <span class="currency-usd">+ $38 USD / mo</span>
-            </div>
-            <div class="text-gray-500 mt-2">
-              <span class="lang-es">Mantenimiento y hosting IA + Web</span><span class="lang-en">AI + Web hosting Maintenance</span>
-            </div>
-          </div>
-          
-          <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Escala" class="block w-full bg-white text-black text-center py-4 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all">
-            <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
-          </a>
-          <p class="text-[9px] font-mono text-gray-500 mt-4 text-center">
-            <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
-            <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
-          </p>
+        <!-- Controles de Idioma Manuales -->
+        <div class="font-mono text-[10px] text-gray-500 flex gap-4 items-center">
+          <button id="btn-lang-es" onclick="setLanguage('es')" class="text-white hover:text-white transition-colors">ESP</button>
+          <span class="text-white/20">|</span>
+          <button id="btn-lang-en" onclick="setLanguage('en')" class="text-gray-500 hover:text-white transition-colors">ENG</button>
         </div>
-
-        <!-- AGENTES DE IA -->
-        <div class="p-10 flex flex-col bg-[#0a0a0a]/50 hover:bg-[#111]/80 transition-colors backdrop-blur-sm relative">
-          <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-gray-600">[ MOD.03 ]</div>
-          <h3 class="text-2xl text-white font-sans tracking-tight">
-            <span class="lang-es">Creación Agentes de IA</span>
-            <span class="lang-en">Custom AI Agents</span>
-          </h3>
-          
-          <div class="my-10">
-            <div class="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">
-              <span class="lang-es">Precios desde:</span><span class="lang-en">Prices from:</span>
-            </div>
-            <div class="text-4xl lg:text-5xl font-sans font-medium text-white tracking-tighter">
-              <span class="currency-cop">$2M - $6M <span class="text-sm text-gray-500 font-mono font-normal">COP</span></span>
-              <span class="currency-usd">$500 - $1.5K <span class="text-sm text-gray-500 font-mono font-normal">USD</span></span>
-            </div>
-          </div>
-          
-          <p class="font-sans text-sm text-gray-300 mb-12 flex-1">
-            <span class="lang-es">Negocia con nosotros la creación de tu agente de IA automatizado a medida para tu empresa.</span>
-            <span class="lang-en">Negotiate with us the creation of a custom automated AI agent tailored for your company.</span>
-          </p>
-          
-          <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
-            <div class="text-white">
-              <span class="currency-cop">+ $160.000 COP / mes</span>
-              <span class="currency-usd">+ $40 USD / mo</span>
-            </div>
-            <div class="text-gray-600 mt-2">
-              <span class="lang-es">Mantenimiento y hosting de IA</span><span class="lang-en">AI hosting and maintenance</span>
-            </div>
-          </div>
-          
-          <a href="https://wa.me/573112351285?text=Hola,%20quiero%20cotizar%20un%20Agente%20de%20IA" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-            <span class="lang-es">Contacte aquí con la empresa</span><span class="lang-en">Contact the company here</span>
-          </a>
-          <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
-            <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
-            <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
-          </p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- ================= NOVA NEURAL ================= -->
-  <section class="py-32 relative border-b border-white/10 overflow-hidden bg-[#020202]">
-    <div class="container mx-auto px-6 max-w-7xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <!-- ================= HERO CINEMÁTICO ================= -->
+    <section class="min-h-screen pt-32 pb-16 px-6 flex flex-col justify-center border-b border-white/10 relative">
+      <div class="container mx-auto max-w-7xl">
+        <div class="gsap-reveal overflow-hidden mb-6">
+          <p class="font-mono text-[10px] md:text-xs text-gray-500 uppercase tracking-[0.3em]">
+            <span class="lang-es">[ SYS.INIT_01 ] — Inteligencia Artificial y Web B2B</span>
+            <span class="lang-en">[ SYS.INIT_01 ] — Artificial Intelligence and B2B Web</span>
+          </p>
+        </div>
         
         <div class="gsap-reveal">
-          <div class="font-mono text-[10px] text-gray-500 tracking-[0.2em] uppercase mb-6">[ SYS.NEURAL_CORE ]</div>
-          <h2 class="text-5xl md:text-6xl font-sans tracking-tight text-white mb-4">Nova Neural</h2>
-          <h3 class="text-xl font-mono text-gray-400 mb-10">
-            <span class="lang-es">Visualiza el cerebro de tu operativa comercial</span>
-            <span class="lang-en">Visualize the brain of your commercial operations</span>
-          </h3>
-          
-          <p class="text-gray-300 font-sans text-lg leading-relaxed mb-6">
-            <span class="lang-es">Implementamos algoritmos capaces de entender el tono de su marca, interactuar orgánicamente y guiar clientes potenciales por todo el embudo de conversión sin intervención humana. El verdadero impacto radica en <strong class="text-white font-medium">respuestas en 2 segundos, los 7 días de la semana</strong>.</span>
-            <span class="lang-en">We deploy algorithms capable of understanding your brand's tone, interacting organically, and guiding potential customers through the sales funnel with no human intervention. The true impact lies in <strong class="text-white font-medium">2-second responses, 7 days a week</strong>.</span>
+          <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-sans font-medium tracking-tighter leading-[0.9] text-white">
+            <span class="lang-es">Tecnología que<br>multiplica ventas.</span>
+            <span class="lang-en">Technology that<br>multiplies sales.</span>
+          </h1>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-24 pt-8 border-t border-white/10 gsap-reveal">
+          <p class="text-gray-300 text-lg md:text-xl leading-relaxed font-sans">
+            <span class="lang-es">Construimos su Sitio Web de Alta Conversión y configuramos Agentes de IA Autónomos para que su negocio capte y atienda clientes 24/7.</span>
+            <span class="lang-en">We build High-Conversion Websites and configure Autonomous AI Agents so your business can capture and serve clients 24/7.</span>
           </p>
         </div>
         
-        <!-- UI Holográfica -->
-        <div class="relative aspect-square border border-white/10 bg-[#050505] flex items-center justify-center overflow-hidden gsap-scale group">
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,100,255,0.08)_0%,transparent_70%)]"></div>
-          <div class="absolute top-6 left-6 font-mono text-[10px] text-gray-500 flex flex-col gap-2">
-            <span>STATUS: [ ONLINE ]</span>
-            <span>LATENCY: [ 2ms ]</span>
-            <span>NODES: [ ACTIVE ]</span>
-          </div>
-          <div class="absolute bottom-6 right-6 font-mono text-[10px] text-gray-500">[ PROCESSING_DATA... ]</div>
-          <div class="w-[70%] h-[70%] border border-white/20 rounded-full border-dashed animate-[spin_30s_linear_infinite]"></div>
-          <div class="w-[50%] h-[50%] border border-white/10 rounded-full absolute animate-[spin_20s_linear_infinite_reverse]"></div>
-          <div class="w-[30%] h-[30%] border border-blue-500/20 rounded-full absolute animate-[spin_10s_linear_infinite]"></div>
-          <div class="w-2 h-2 bg-white rounded-full shadow-[0_0_20px_#fff] relative">
-            <div class="absolute inset-0 bg-white rounded-full animate-ping opacity-50"></div>
-          </div>
-          <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.05),transparent)] h-[20%] w-full animate-scan"></div>
+        <div class="mt-16 gsap-reveal">
+          <a href="#precios" class="inline-flex flex-col md:flex-row items-center gap-4 border border-white/20 bg-white/5 hover:bg-white hover:text-black px-8 py-4 font-mono text-xs text-white uppercase tracking-widest transition-all duration-500 backdrop-blur-sm group">
+            <span class="lang-es">Ver Planes y Precios ↓</span>
+            <span class="lang-en">View Plans & Pricing ↓</span>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================= RESULTADOS ================= -->
-  <section class="py-32 border-b border-white/10 relative">
-    <div class="container mx-auto px-6 max-w-7xl">
-      <div class="mb-20 gsap-reveal">
-        <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-4">
-          <span class="lang-es">Resultados con Datos</span>
-          <span class="lang-en">Results with Data</span>
-        </h2>
-        <p class="font-mono text-gray-500 text-sm">
-          <span class="lang-es">El impacto real de automatizar su operativa comercial.</span>
-          <span class="lang-en">The real impact of automating your commercial operations.</span>
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 border-t border-l border-white/10 gsap-stagger">
-        <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
-          <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
-            <span class="lang-es">"Antes perdíamos clientes porque escribían a las 9 PM y nadie respondía. Desde que implementamos el Agente de Ventas de Nova IA, amanecemos con 3 a 5 reuniones ya calificadas y agendadas. El ROI se pagó solo en la primera semana."</span>
-            <span class="lang-en">"We used to lose clients because they wrote at 9 PM and no one answered. Since implementing Nova IA's Sales Agent, we wake up to 3 to 5 qualified and scheduled meetings. The ROI paid for itself in the first week."</span>
-          </p>
-          <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
-            <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">CM</div>
-            <div>
-              <div class="text-white font-sans text-sm">Carlos M.</div>
-              <div class="text-gray-500 font-mono text-[10px] mt-1">
-                <span class="lang-es">Gerente Comercial, Inmobiliaria</span>
-                <span class="lang-en">Commercial Manager, Real Estate</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
-          <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
-            <span class="lang-es">"Redujimos el tiempo de respuesta de 3 horas a 2 segundos. El agente de soporte resuelve el 60% de las dudas técnicas frecuentes sin intervención humana. Nos ha ahorrado más de 40 horas a la semana."</span>
-            <span class="lang-en">"We reduced response time from 3 hours to 2 seconds. The support agent resolves 60% of frequent technical doubts without human intervention. It has saved us over 40 hours a week."</span>
-          </p>
-          <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
-            <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">LG</div>
-            <div>
-              <div class="text-white font-sans text-sm">Laura G.</div>
-              <div class="text-gray-500 font-mono text-[10px] mt-1">
-                <span class="lang-es">Directora de Operaciones, Logística</span>
-                <span class="lang-en">Operations Director, Logistics</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
-          <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
-            <span class="lang-es">"Teníamos una web 'bonita' pero que no generaba contactos. Nova IA reconstruyó nuestro embudo digital y la tasa de conversión subió un 45% en el primer mes. Ellos entienden de negocios y rentabilidad, no solo de código."</span>
-            <span class="lang-en">"We had a 'pretty' website but it generated no leads. Nova IA rebuilt our digital funnel and the conversion rate went up 45% in the first month. They understand business and profitability, not just code."</span>
-          </p>
-          <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
-            <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">AF</div>
-            <div>
-              <div class="text-white font-sans text-sm">Andrés F.</div>
-              <div class="text-gray-500 font-mono text-[10px] mt-1">
-                <span class="lang-es">CEO, Consultoría B2B</span>
-                <span class="lang-en">CEO, B2B Consulting</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= INFORMACIÓN LEGAL ================= -->
-  <section class="py-32 border-b border-white/10 relative">
-    <div class="container mx-auto px-6 max-w-7xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-        
-        <div class="gsap-reveal">
-          <h2 class="text-3xl font-sans tracking-tight text-white mb-2">
-            <span class="lang-es">Garantía de Satisfacción</span>
-            <span class="lang-en">Satisfaction Guarantee</span>
+    <!-- ================= PRECIOS ================= -->
+    <section id="precios" class="py-32 border-b border-white/10 relative">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="mb-20 gsap-reveal">
+          <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-2">
+            <span class="lang-es">Precios Justos sin cláusulas ocultas</span>
+            <span class="lang-en">Fair Prices with no hidden clauses</span>
           </h2>
-          
-          <div class="space-y-6 font-sans text-gray-300 text-base leading-relaxed mt-8">
-            <p>
-              <span class="lang-es"><strong class="text-white">0% de anticipo en el Plan Esencial.</strong> Primero diseñamos y construimos tu proyecto completo antes de que pagues. Si algo no te convence, hacemos todas las revisiones necesarias hasta que logremos hacerte sentir satisfecho con los resultados, sin costos adicionales.</span>
-              <span class="lang-en"><strong class="text-white">0% upfront on the Essential Plan.</strong> We design and build your complete project first before you pay. If you're not convinced, we make all necessary revisions until you are satisfied with the results, at no additional cost.</span>
-            </p>
-            <p>
-              <span class="lang-es">Nuestra misión es lograr el crecimiento de la industria mediante la tecnología, la satisfacción de los clientes y los precios justos, sin sobrecostos ocultos y con productos de calidad alta. Si algún producto no funcionó como debía, te reembolsamos si ya se hizo un pago, o si no has pagado, no pagas. Protegemos tu inversión porque creemos en la calidad de nuestros productos. Esta política aplica para cualquiera de nuestros planes.</span>
-              <span class="lang-en">Our mission is industry growth through technology, customer satisfaction, and fair prices without hidden costs. If a product didn't work as it should, we refund you if a payment was made, or if you haven't paid, you don't pay. We protect your investment because we believe in our quality. This policy applies to any of our plans.</span>
-            </p>
-          </div>
-          <p class="mt-10 font-mono text-[10px] text-gray-600 border-t border-white/10 pt-6">
-            <span class="lang-es">*Consulta nuestros <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors">Términos y Condiciones</a> para conocer los detalles legales sobre devoluciones y exclusiones técnicas de la Inteligencia Artificial.</span>
-            <span class="lang-en">*Check our <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors">Terms and Conditions</a> for details about refunds and AI technical exclusions.</span>
+          <p class="font-mono text-gray-500 text-sm">
+            <span class="lang-es">Precios con transparencia radical, elige el plan que más se acomode a ti.</span>
+            <span class="lang-en">Radical transparency pricing, choose the plan that best suits you.</span>
           </p>
+          
+          <!-- Toggle Manual de Moneda -->
+          <div class="mt-8 flex gap-0 font-mono text-xs border border-white/20 inline-flex relative z-10">
+            <button id="btn-curr-cop" onclick="setCurrency('cop')" class="bg-white/10 text-white px-6 py-2 border-r border-white/20 transition-colors">COP</button>
+            <button id="btn-curr-usd" onclick="setCurrency('usd')" class="text-gray-500 hover:bg-white/5 px-6 py-2 transition-colors">USD</button>
+          </div>
         </div>
         
-        <div class="space-y-8">
-          <div class="border border-white/10 p-10 bg-[#0a0a0a]/50 gsap-reveal">
-            <h3 class="text-2xl font-sans text-white mb-4">
-              <span class="lang-es">Entrega y Puesta en Marcha</span>
-              <span class="lang-en">Delivery & Launch</span>
-            </h3>
-            <p class="font-sans text-gray-300 text-sm">
-              <span class="lang-es">Después de la entrega, tu producto está listo para funcionar 24/7. <strong class="text-white">El mantenimiento NO se cobrará el primer mes</strong> en ningún producto, sino a partir del segundo mes dependiendo del plan o proyecto que busques.</span>
-              <span class="lang-en">After delivery, your product is ready to run 24/7. <strong class="text-white">Maintenance will NOT be charged the first month</strong> on any product, but starting the second month depending on the plan.</span>
-            </p>
-          </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-white/10 gsap-stagger">
           
-          <div class="border border-white/10 p-10 bg-white/5 backdrop-blur-md gsap-reveal">
-            <h3 class="text-2xl font-sans text-white mb-4">
-              <span class="lang-es">¿Proyectos Especiales a Medida?</span>
-              <span class="lang-en">Custom Special Projects?</span>
+          <!-- PLAN ESENCIAL -->
+          <div class="border-b lg:border-b-0 lg:border-r border-white/10 p-10 flex flex-col bg-[#0a0a0a]/50 hover:bg-[#111]/80 transition-colors backdrop-blur-sm relative group">
+            <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-gray-600">[ MOD.01 ]</div>
+            <h3 class="text-2xl text-white font-sans tracking-tight">
+              <span class="lang-es">Plan Esencial (Landing Page)</span>
+              <span class="lang-en">Essential Plan (Landing Page)</span>
             </h3>
-            <p class="font-sans text-gray-300 text-sm mb-10">
-              <span class="lang-es">¿Tienes un proyecto que no cabe en ningún plan? Tranquilo, agenda una cita por medio de WhatsApp.</span>
-              <span class="lang-en">Have a project that doesn't fit in any plan? Don't worry, schedule an appointment via WhatsApp.</span>
-            </p>
-            <a href="https://wa.me/573112351285?text=Hola,%20tengo%20un%20proyecto%20especial" class="inline-block border border-white/20 bg-transparent px-8 py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-              <span class="lang-es">Contactar a Nova IA</span>
-              <span class="lang-en">Contact Nova IA</span>
+            
+            <div class="my-10">
+              <div class="text-5xl font-sans font-medium text-white tracking-tighter">
+                <span class="currency-cop">$250.000 <span class="text-sm text-gray-500 font-mono font-normal">COP</span></span>
+                <span class="currency-usd">$65 <span class="text-sm text-gray-500 font-mono font-normal">USD</span></span>
+              </div>
+            </div>
+            
+            <ul class="space-y-4 font-mono text-xs text-gray-400 mb-12 flex-1">
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Diseño de alto impacto</span><span class="lang-en">High impact design</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">100% optimizado para móviles</span><span class="lang-en">100% mobile optimized</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Formulario de WhatsApp incluido</span><span class="lang-en">WhatsApp form included</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Imágenes y contenido multimedia</span><span class="lang-en">Images & multimedia content</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">SEO básico on-page</span><span class="lang-en">Basic on-page SEO</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Certificado SSL & Privacidad</span><span class="lang-en">SSL Certificate & Privacy Policy</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">⚡</span> <span class="lang-es">Entrega en 5 días hábiles</span><span class="lang-en">Delivery in 5 business days</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">🌍</span> <span class="lang-es">Hosting por un mes incluido</span><span class="lang-en">1 month hosting included</span></li>
+            </ul>
+            
+            <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
+              <div class="text-white">
+                <span class="currency-cop">+ $40.000 COP / mes</span>
+                <span class="currency-usd">+ $10 USD / mo</span>
+              </div>
+              <div class="text-gray-600 mt-2">
+                <span class="lang-es">Mantenimiento y hosting</span><span class="lang-en">Maintenance and hosting</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Esencial" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+              <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
             </a>
+            <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
+              <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
+              <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
+            </p>
           </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
+          
+          <!-- PLAN ESCALA (Más Popular) -->
+          <div class="border-b lg:border-b-0 lg:border-r border-white/10 p-10 flex flex-col bg-white/5 backdrop-blur-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-white text-black font-mono text-[9px] uppercase tracking-widest px-4 py-2">
+              <span class="lang-es">Más Popular</span><span class="lang-en">Most Popular</span>
+            </div>
+            <div class="absolute top-0 left-0 p-4 font-mono text-[10px] text-gray-400">[ MOD.02 ]</div>
+            <h3 class="text-2xl text-white font-sans tracking-tight mt-6">
+              <span class="lang-es">Plan Escala (Web + Analítica)</span>
+              <span class="lang-en">Scale Plan (Web + Analytics)</span>
+            </h3>
+            
+            <div class="my-10">
+              <div class="text-5xl font-sans font-medium text-white tracking-tighter">
+                <span class="currency-cop">$1.500.000 <span class="text-sm text-gray-400 font-mono font-normal">COP</span></span>
+                <span class="currency-usd">$375 <span class="text-sm text-gray-400 font-mono font-normal">USD</span></span>
+              </div>
+            </div>
+            
+            <ul class="space-y-4 font-mono text-xs text-gray-300 mb-12 flex-1">
+              <li class="flex items-start gap-3"><span class="text-white">✨</span> <span class="lang-es">Todo lo del Plan Esencial, más:</span><span class="lang-en">Everything in Essential, plus:</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Revisiones ilimitadas en el proceso</span><span class="lang-en">Unlimited revisions during process</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Panel administrable</span><span class="lang-en">Admin panel</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Ecosistema Business Analytics</span><span class="lang-en">Business Analytics ecosystem</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">🤖</span> <span class="lang-es">Asistente IA integrado 24/7</span><span class="lang-en">24/7 Integrated AI Assistant</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Sistema de Google Analytics</span><span class="lang-en">Google Analytics setup</span></li>
+              <li class="flex items-start gap-3"><span class="text-white">✅</span> <span class="lang-es">Diseño UI UX personalizado</span><span class="lang-en">UI UX personalized design</span></li>
+            </ul>
+            
+            <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
+              <div class="text-white">
+                <span class="currency-cop">+ $150.000 COP / mes</span>
+                <span class="currency-usd">+ $38 USD / mo</span>
+              </div>
+              <div class="text-gray-500 mt-2">
+                <span class="lang-es">Mantenimiento y hosting IA + Web</span><span class="lang-en">AI + Web hosting Maintenance</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20el%20Plan%20Escala" class="block w-full bg-white text-black text-center py-4 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all relative z-10">
+              <span class="lang-es">Elegir Plan</span><span class="lang-en">Choose Plan</span>
+            </a>
+            <p class="text-[9px] font-mono text-gray-500 mt-4 text-center">
+              <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
+              <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
+            </p>
+          </div>
 
-  <!-- ================= FORMULARIO ================= -->
-  <section id="contacto" class="py-32 relative border-b border-white/10">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="text-center mb-20 gsap-reveal">
-        <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-4">
-          <span class="lang-es">¿Listo para tu primera venta online?</span>
-          <span class="lang-en">Ready for your first online sale?</span>
-        </h2>
-        <p class="font-sans text-gray-300 mt-6 text-lg">
-          <span class="lang-es">Nuestro robot asistente te da la bienvenida, contáctanos hoy y te responderemos en menos de 24 horas.</span>
-          <span class="lang-en">Our greeting bot welcomes you, contact us today and we will reply in less than 24 hours.</span>
-        </p>
+          <!-- AGENTES DE IA -->
+          <div class="p-10 flex flex-col bg-[#0a0a0a]/50 hover:bg-[#111]/80 transition-colors backdrop-blur-sm relative">
+            <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-gray-600">[ MOD.03 ]</div>
+            <h3 class="text-2xl text-white font-sans tracking-tight">
+              <span class="lang-es">Creación Agentes de IA</span>
+              <span class="lang-en">Custom AI Agents</span>
+            </h3>
+            
+            <div class="my-10">
+              <div class="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">
+                <span class="lang-es">Precios desde:</span><span class="lang-en">Prices from:</span>
+              </div>
+              <div class="text-4xl lg:text-5xl font-sans font-medium text-white tracking-tighter">
+                <span class="currency-cop">$2M - $6M <span class="text-sm text-gray-500 font-mono font-normal">COP</span></span>
+                <span class="currency-usd">$500 - $1.5K <span class="text-sm text-gray-500 font-mono font-normal">USD</span></span>
+              </div>
+            </div>
+            
+            <p class="font-sans text-sm text-gray-300 mb-12 flex-1">
+              <span class="lang-es">Negocia con nosotros la creación de tu agente de IA automatizado a medida para tu empresa.</span>
+              <span class="lang-en">Negotiate with us the creation of a custom automated AI agent tailored for your company.</span>
+            </p>
+            
+            <div class="border-t border-white/10 pt-6 mb-8 font-mono text-xs">
+              <div class="text-white">
+                <span class="currency-cop">+ $160.000 COP / mes</span>
+                <span class="currency-usd">+ $40 USD / mo</span>
+              </div>
+              <div class="text-gray-600 mt-2">
+                <span class="lang-es">Mantenimiento y hosting de IA</span><span class="lang-en">AI hosting and maintenance</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/573112351285?text=Hola,%20quiero%20cotizar%20un%20Agente%20de%20IA" class="block w-full border border-white/20 bg-transparent text-center py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+              <span class="lang-es">Contacte aquí con la empresa</span><span class="lang-en">Contact the company here</span>
+            </a>
+            <p class="text-[9px] font-mono text-gray-600 mt-4 text-center">
+              <span class="lang-es">*Al contactarnos aceptas nuestra Política de Privacidad.</span>
+              <span class="lang-en">*By contacting us you accept our Privacy Policy.</span>
+            </p>
+          </div>
+
+        </div>
       </div>
-      
-      <form class="space-y-10 border border-white/10 p-10 bg-[#050505]/80 backdrop-blur-md gsap-reveal">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div class="flex flex-col">
-            <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
-              <span class="lang-es">Nombre</span><span class="lang-en">First Name</span>
-            </label>
-            <input type="text" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+    </section>
+
+    <!-- ================= NOVA NEURAL ================= -->
+    <section class="py-32 relative border-b border-white/10 overflow-hidden bg-[#020202]">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <div class="gsap-reveal">
+            <div class="font-mono text-[10px] text-gray-500 tracking-[0.2em] uppercase mb-6">[ SYS.NEURAL_CORE ]</div>
+            <h2 class="text-5xl md:text-6xl font-sans tracking-tight text-white mb-4">Nova Neural</h2>
+            <h3 class="text-xl font-mono text-gray-400 mb-10">
+              <span class="lang-es">Visualiza el cerebro de tu operativa comercial</span>
+              <span class="lang-en">Visualize the brain of your commercial operations</span>
+            </h3>
+            
+            <p class="text-gray-300 font-sans text-lg leading-relaxed mb-6">
+              <span class="lang-es">Implementamos algoritmos capaces de entender el tono de su marca, interactuar orgánicamente y guiar clientes potenciales por todo el embudo de conversión sin intervención humana. El verdadero impacto radica en <strong class="text-white font-medium">respuestas en 2 segundos, los 7 días de la semana</strong>.</span>
+              <span class="lang-en">We deploy algorithms capable of understanding your brand's tone, interacting organically, and guiding potential customers through the sales funnel with no human intervention. The true impact lies in <strong class="text-white font-medium">2-second responses, 7 days a week</strong>.</span>
+            </p>
           </div>
-          <div class="flex flex-col">
-            <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
-              <span class="lang-es">Apellidos</span><span class="lang-en">Last Name</span>
-            </label>
-            <input type="text" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+          
+          <!-- UI Holográfica -->
+          <div class="relative aspect-square border border-white/10 bg-[#050505] flex items-center justify-center overflow-hidden gsap-scale group">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,100,255,0.08)_0%,transparent_70%)]"></div>
+            <div class="absolute top-6 left-6 font-mono text-[10px] text-gray-500 flex flex-col gap-2">
+              <span>STATUS: [ ONLINE ]</span>
+              <span>LATENCY: [ 2ms ]</span>
+              <span>NODES: [ ACTIVE ]</span>
+            </div>
+            <div class="absolute bottom-6 right-6 font-mono text-[10px] text-gray-500">[ PROCESSING_DATA... ]</div>
+            <div class="w-[70%] h-[70%] border border-white/20 rounded-full border-dashed animate-[spin_30s_linear_infinite]"></div>
+            <div class="w-[50%] h-[50%] border border-white/10 rounded-full absolute animate-[spin_20s_linear_infinite_reverse]"></div>
+            <div class="w-[30%] h-[30%] border border-blue-500/20 rounded-full absolute animate-[spin_10s_linear_infinite]"></div>
+            <div class="w-2 h-2 bg-white rounded-full shadow-[0_0_20px_#fff] relative">
+              <div class="absolute inset-0 bg-white rounded-full animate-ping opacity-50"></div>
+            </div>
+            <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.05),transparent)] h-[20%] w-full animate-scan"></div>
           </div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div class="flex flex-col">
-            <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">Email</label>
-            <input type="email" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
-          </div>
-          <div class="flex flex-col">
-            <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">WhatsApp</label>
-            <input type="tel" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
-          </div>
-        </div>
-        
-        <div class="flex flex-col">
-          <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
-            <span class="lang-es">Tipo de Negocio</span><span class="lang-en">Business Type</span>
-          </label>
-          <select class="bg-[#050505] border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none appearance-none">
-            <option class="lang-es">Selecciona una opción...</option>
-            <option class="lang-en">Select an option...</option>
-            <option>E-Commerce / Tienda Online</option>
-            <option>Salud / Bienestar (Health / Wellness)</option>
-            <option>Educación / Cursos (Education)</option>
-            <option>Marca Personal (Personal Brand)</option>
-            <option>Startup / Tech</option>
-            <option>Restaurante / Hostelería</option>
-            <option>Otro / Other</option>
-          </select>
-        </div>
-        
-        <div class="flex items-start gap-4 pt-4">
-          <input type="checkbox" class="mt-1 bg-transparent border border-white/20 rounded-none appearance-none w-4 h-4 checked:bg-white transition-colors cursor-pointer shrink-0">
-          <p class="font-mono text-[10px] text-gray-500 leading-relaxed">
-            <span class="lang-es">He leído y acepto la <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Política de Privacidad</a> y autorizo el tratamiento de mis datos según la Ley 1581 de 2012.</span>
-            <span class="lang-en">I accept the <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Privacy Policy</a> and authorize data processing.</span>
+      </div>
+    </section>
+
+    <!-- ================= RESULTADOS ================= -->
+    <section class="py-32 border-b border-white/10 relative">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="mb-20 gsap-reveal">
+          <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-4">
+            <span class="lang-es">Resultados con Datos</span>
+            <span class="lang-en">Results with Data</span>
+          </h2>
+          <p class="font-mono text-gray-500 text-sm">
+            <span class="lang-es">El impacto real de automatizar su operativa comercial.</span>
+            <span class="lang-en">The real impact of automating your commercial operations.</span>
           </p>
         </div>
         
-        <button type="submit" class="w-full bg-white text-black py-5 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all mt-4">
-          <span class="lang-es">Enviar Solicitud</span><span class="lang-en">Submit Request</span>
-        </button>
-      </form>
-    </div>
-  </section>
+        <div class="grid grid-cols-1 md:grid-cols-3 border-t border-l border-white/10 gsap-stagger">
+          <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
+            <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
+              <span class="lang-es">"Antes perdíamos clientes porque escribían a las 9 PM y nadie respondía. Desde que implementamos el Agente de Ventas de Nova IA, amanecemos con 3 a 5 reuniones ya calificadas y agendadas. El ROI se pagó solo en la primera semana."</span>
+              <span class="lang-en">"We used to lose clients because they wrote at 9 PM and no one answered. Since implementing Nova IA's Sales Agent, we wake up to 3 to 5 qualified and scheduled meetings. The ROI paid for itself in the first week."</span>
+            </p>
+            <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
+              <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">CM</div>
+              <div>
+                <div class="text-white font-sans text-sm">Carlos M.</div>
+                <div class="text-gray-500 font-mono text-[10px] mt-1">
+                  <span class="lang-es">Gerente Comercial, Inmobiliaria</span>
+                  <span class="lang-en">Commercial Manager, Real Estate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
+            <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
+              <span class="lang-es">"Redujimos el tiempo de respuesta de 3 horas a 2 segundos. El agente de soporte resuelve el 60% de las dudas técnicas frecuentes sin intervención humana. Nos ha ahorrado más de 40 horas a la semana."</span>
+              <span class="lang-en">"We reduced response time from 3 hours to 2 seconds. The support agent resolves 60% of frequent technical doubts without human intervention. It has saved us over 40 hours a week."</span>
+            </p>
+            <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
+              <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">LG</div>
+              <div>
+                <div class="text-white font-sans text-sm">Laura G.</div>
+                <div class="text-gray-500 font-mono text-[10px] mt-1">
+                  <span class="lang-es">Directora de Operaciones, Logística</span>
+                  <span class="lang-en">Operations Director, Logistics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-b border-r border-white/10 p-10 flex flex-col bg-[#050505] hover:bg-white/[0.03] transition-colors duration-500">
+            <p class="font-sans text-gray-300 text-lg leading-relaxed mb-12 flex-1">
+              <span class="lang-es">"Teníamos una web 'bonita' pero que no generaba contactos. Nova IA reconstruyó nuestro embudo digital y la tasa de conversión subió un 45% en el primer mes. Ellos entienden de negocios y rentabilidad, no solo de código."</span>
+              <span class="lang-en">"We had a 'pretty' website but it generated no leads. Nova IA rebuilt our digital funnel and the conversion rate went up 45% in the first month. They understand business and profitability, not just code."</span>
+            </p>
+            <div class="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
+              <div class="w-12 h-12 border border-white/20 bg-white/5 flex items-center justify-center font-mono text-xs text-white tracking-widest">AF</div>
+              <div>
+                <div class="text-white font-sans text-sm">Andrés F.</div>
+                <div class="text-gray-500 font-mono text-[10px] mt-1">
+                  <span class="lang-es">CEO, Consultoría B2B</span>
+                  <span class="lang-en">CEO, B2B Consulting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="py-12 border-t border-white/10 bg-[#050505] relative z-40">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-      <div class="flex flex-col items-center md:items-start text-center md:text-left">
-        <div class="font-mono text-white text-sm tracking-widest mb-2 uppercase">[ Nova IA S.A.S. ]</div>
-        <div class="font-mono text-[10px] text-gray-500">Bogotá, Colombia</div>
+    <!-- ================= INFORMACIÓN LEGAL ================= -->
+    <section class="py-32 border-b border-white/10 relative">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+          
+          <div class="gsap-reveal">
+            <h2 class="text-3xl font-sans tracking-tight text-white mb-2">
+              <span class="lang-es">Garantía de Satisfacción</span>
+              <span class="lang-en">Satisfaction Guarantee</span>
+            </h2>
+            
+            <div class="space-y-6 font-sans text-gray-300 text-base leading-relaxed mt-8">
+              <p>
+                <span class="lang-es"><strong class="text-white">0% de anticipo en el Plan Esencial.</strong> Primero diseñamos y construimos tu proyecto completo antes de que pagues. Si algo no te convence, hacemos todas las revisiones necesarias hasta que logremos hacerte sentir satisfecho con los resultados, sin costos adicionales.</span>
+                <span class="lang-en"><strong class="text-white">0% upfront on the Essential Plan.</strong> We design and build your complete project first before you pay. If you're not convinced, we make all necessary revisions until you are satisfied with the results, at no additional cost.</span>
+              </p>
+              <p>
+                <span class="lang-es">Nuestra misión es lograr el crecimiento de la industria mediante la tecnología, la satisfacción de los clientes y los precios justos, sin sobrecostos ocultos y con productos de calidad alta. Si algún producto no funcionó como debía, te reembolsamos si ya se hizo un pago, o si no has pagado, no pagas. Protegemos tu inversión porque creemos en la calidad de nuestros productos. Esta política aplica para cualquiera de nuestros planes.</span>
+                <span class="lang-en">Our mission is industry growth through technology, customer satisfaction, and fair prices without hidden costs. If a product didn't work as it should, we refund you if a payment was made, or if you haven't paid, you don't pay. We protect your investment because we believe in our quality. This policy applies to any of our plans.</span>
+              </p>
+            </div>
+            <p class="mt-10 font-mono text-[10px] text-gray-600 border-t border-white/10 pt-6">
+              <span class="lang-es">*Consulta nuestros <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10">Términos y Condiciones</a> para conocer los detalles legales sobre devoluciones y exclusiones técnicas de la Inteligencia Artificial.</span>
+              <span class="lang-en">*Check our <a href="terminos-condiciones.html" class="underline hover:text-white transition-colors relative z-10">Terms and Conditions</a> for details about refunds and AI technical exclusions.</span>
+            </p>
+          </div>
+          
+          <div class="space-y-8">
+            <div class="border border-white/10 p-10 bg-[#0a0a0a]/50 gsap-reveal">
+              <h3 class="text-2xl font-sans text-white mb-4">
+                <span class="lang-es">Entrega y Puesta en Marcha</span>
+                <span class="lang-en">Delivery & Launch</span>
+              </h3>
+              <p class="font-sans text-gray-300 text-sm">
+                <span class="lang-es">Después de la entrega, tu producto está listo para funcionar 24/7. <strong class="text-white">El mantenimiento NO se cobrará el primer mes</strong> en ningún producto, sino a partir del segundo mes dependiendo del plan o proyecto que busques.</span>
+                <span class="lang-en">After delivery, your product is ready to run 24/7. <strong class="text-white">Maintenance will NOT be charged the first month</strong> on any product, but starting the second month depending on the plan.</span>
+              </p>
+            </div>
+            
+            <div class="border border-white/10 p-10 bg-white/5 backdrop-blur-md gsap-reveal">
+              <h3 class="text-2xl font-sans text-white mb-4">
+                <span class="lang-es">¿Proyectos Especiales a Medida?</span>
+                <span class="lang-en">Custom Special Projects?</span>
+              </h3>
+              <p class="font-sans text-gray-300 text-sm mb-10">
+                <span class="lang-es">¿Tienes un proyecto que no cabe en ningún plan? Tranquilo, agenda una cita por medio de WhatsApp.</span>
+                <span class="lang-en">Have a project that doesn't fit in any plan? Don't worry, schedule an appointment via WhatsApp.</span>
+              </p>
+              <a href="https://wa.me/573112351285?text=Hola,%20tengo%20un%20proyecto%20especial" class="inline-block border border-white/20 bg-transparent px-8 py-4 font-mono text-xs text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all relative z-10">
+                <span class="lang-es">Contactar a Nova IA</span>
+                <span class="lang-en">Contact Nova IA</span>
+              </a>
+            </div>
+          </div>
+          
+        </div>
       </div>
-      
-      <div class="text-center font-mono text-[10px] text-gray-500">
-        <span class="lang-es">© 2026 Nova IA. Todos los derechos reservados.</span>
-        <span class="lang-en">© 2026 Nova IA. All rights reserved.</span>
+    </section>
+
+    <!-- ================= FORMULARIO ================= -->
+    <section id="contacto" class="py-32 relative border-b border-white/10">
+      <div class="container mx-auto px-6 max-w-4xl">
+        <div class="text-center mb-20 gsap-reveal">
+          <h2 class="text-4xl md:text-5xl font-sans tracking-tight text-white mb-4">
+            <span class="lang-es">¿Listo para tu primera venta online?</span>
+            <span class="lang-en">Ready for your first online sale?</span>
+          </h2>
+          <p class="font-sans text-gray-300 mt-6 text-lg">
+            <span class="lang-es">Nuestro robot asistente te da la bienvenida, contáctanos hoy y te responderemos en menos de 24 horas.</span>
+            <span class="lang-en">Our greeting bot welcomes you, contact us today and we will reply in less than 24 hours.</span>
+          </p>
+        </div>
+        
+        <form class="space-y-10 border border-white/10 p-10 bg-[#050505]/80 backdrop-blur-md gsap-reveal relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col">
+              <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
+                <span class="lang-es">Nombre</span><span class="lang-en">First Name</span>
+              </label>
+              <input type="text" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+            </div>
+            <div class="flex flex-col">
+              <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
+                <span class="lang-es">Apellidos</span><span class="lang-en">Last Name</span>
+              </label>
+              <input type="text" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col">
+              <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">Email</label>
+              <input type="email" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+            </div>
+            <div class="flex flex-col">
+              <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">WhatsApp</label>
+              <input type="tel" class="bg-transparent border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none">
+            </div>
+          </div>
+          
+          <div class="flex flex-col">
+            <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-2">
+              <span class="lang-es">Tipo de Negocio</span><span class="lang-en">Business Type</span>
+            </label>
+            <select class="bg-[#050505] border-b border-white/20 py-3 text-white font-sans focus:outline-none focus:border-white transition-colors rounded-none appearance-none">
+              <option class="lang-es">Selecciona una opción...</option>
+              <option class="lang-en">Select an option...</option>
+              <option>E-Commerce / Tienda Online</option>
+              <option>Salud / Bienestar (Health / Wellness)</option>
+              <option>Educación / Cursos (Education)</option>
+              <option>Marca Personal (Personal Brand)</option>
+              <option>Startup / Tech</option>
+              <option>Restaurante / Hostelería</option>
+              <option>Otro / Other</option>
+            </select>
+          </div>
+          
+          <div class="flex items-start gap-4 pt-4">
+            <input type="checkbox" class="mt-1 bg-transparent border border-white/20 rounded-none appearance-none w-4 h-4 checked:bg-white transition-colors cursor-pointer shrink-0">
+            <p class="font-mono text-[10px] text-gray-500 leading-relaxed">
+              <span class="lang-es">He leído y acepto la <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Política de Privacidad</a> y autorizo el tratamiento de mis datos según la Ley 1581 de 2012.</span>
+              <span class="lang-en">I accept the <a href="politica-privacidad.html" class="text-white underline hover:text-gray-300 transition-colors">Privacy Policy</a> and authorize data processing.</span>
+            </p>
+          </div>
+          
+          <button type="submit" class="w-full bg-white text-black py-5 font-mono text-xs uppercase tracking-widest hover:bg-gray-200 transition-all mt-4">
+            <span class="lang-es">Enviar Solicitud</span><span class="lang-en">Submit Request</span>
+          </button>
+        </form>
       </div>
-      
-      <div class="flex flex-col md:flex-row gap-4 md:gap-8 font-mono text-[10px] text-center">
-        <a href="politica-privacidad.html" class="text-gray-400 hover:text-white transition-colors">
-          <span class="lang-es">📄 Política de Privacidad</span><span class="lang-en">📄 Privacy Policy</span>
-        </a>
-        <a href="terminos-condiciones.html" class="text-gray-400 hover:text-white transition-colors">
-          <span class="lang-es">⚖️ Términos y Condiciones</span><span class="lang-en">⚖️ Terms & Conditions</span>
-        </a>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="py-12 border-t border-white/10 bg-[#050505] relative z-40">
+      <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+          <div class="font-mono text-white text-sm tracking-widest mb-2 uppercase">[ Nova IA S.A.S. ]</div>
+          <div class="font-mono text-[10px] text-gray-500">Bogotá, Colombia</div>
+        </div>
+        
+        <div class="text-center font-mono text-[10px] text-gray-500">
+          <span class="lang-es">© 2026 Nova IA. Todos los derechos reservados.</span>
+          <span class="lang-en">© 2026 Nova IA. All rights reserved.</span>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-4 md:gap-8 font-mono text-[10px] text-center">
+          <a href="politica-privacidad.html" class="text-gray-400 hover:text-white transition-colors relative z-10">
+            <span class="lang-es">📄 Política de Privacidad</span><span class="lang-en">📄 Privacy Policy</span>
+          </a>
+          <a href="terminos-condiciones.html" class="text-gray-400 hover:text-white transition-colors relative z-10">
+            <span class="lang-es">⚖️ Términos y Condiciones</span><span class="lang-en">⚖️ Terms & Conditions</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+
+  </main> <!-- FIN DEL WRAPPER PRINCIPAL -->
 
   <!-- ================= COOKIE BANNER ================= -->
   <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-[#0a0a0a]/90 backdrop-blur-xl border-t border-white/10 p-6 transform translate-y-full transition-transform duration-700 z-50">
@@ -576,7 +581,7 @@
           <span class="lang-en">🛡️ Your Privacy is Our Priority</span>
         </h4>
         <p class="text-gray-500 font-mono text-[10px] leading-relaxed">
-          <span class="lang-es">Utilizamos cookies esenciales y de análisis para optimizar tu experiencia y operar nuestra tecnología. Al continuar, aceptas el uso de las mismas.</span>
+          <span class="lang-es">Utilizamos cookies esenciales y de análisis para optimizar tu experiencia. Al continuar, aceptas el uso de las mismas.</span>
           <span class="lang-en">We use essential and analytics cookies to optimize your experience. By continuing, you accept their use.</span>
         </p>
       </div>
@@ -597,8 +602,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
   <script>
-    // --- LÓGICA DE GEOLOCALIZACIÓN, IDIOMA Y MONEDA ---
-    
+    // FUNCIONES GLOBALES DE IDIOMA
     function setLanguage(lang) {
       document.body.classList.remove('lang-es', 'lang-en');
       document.body.classList.add(`lang-${lang}`);
@@ -608,8 +612,7 @@
       document.getElementById('btn-lang-en').classList.toggle('text-white', lang === 'en');
       document.getElementById('btn-lang-en').classList.toggle('text-gray-500', lang !== 'en');
       
-      // IMPORTANTE: Refrescar las animaciones si el texto cambia de tamaño
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 100);
     }
 
     function setCurrency(currency) {
@@ -630,79 +633,77 @@
         btnCop.classList.remove('bg-white/10', 'text-white');
         btnCop.classList.add('text-gray-500', 'hover:bg-white/5');
       }
-
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 100);
     }
 
-    async function initGeolocation() {
-      try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        
-        const spanishSpeakingCountries = [
-          'AR', 'BO', 'CL', 'CR', 'CU', 'DO', 'EC', 'SV', 'GQ', 
-          'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'ES', 'UY', 'VE'
-        ];
-        
-        if (data.country === 'CO') {
-          setLanguage('es');
-          setCurrency('cop');
-        } else if (spanishSpeakingCountries.includes(data.country)) {
-          setLanguage('es');
-          setCurrency('usd');
-        } else {
-          setLanguage('en');
-          setCurrency('usd');
+    // EJECUTAR TODO SOLO CUANDO EL DOM ESTÉ LISTO (Evita pantallas en blanco)
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. Iniciar Geolocalización
+      async function initGeolocation() {
+        try {
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
+          const spanishSpeakingCountries = [
+            'AR', 'BO', 'CL', 'CR', 'CU', 'DO', 'EC', 'SV', 'GQ', 
+            'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'ES', 'UY', 'VE'
+          ];
+          
+          if (data.country === 'CO') {
+            setLanguage('es'); setCurrency('cop');
+          } else if (spanishSpeakingCountries.includes(data.country)) {
+            setLanguage('es'); setCurrency('usd');
+          } else {
+            setLanguage('en'); setCurrency('usd');
+          }
+        } catch (error) {
+          console.warn("No IP detected, keeping default (ES/COP)");
         }
-      } catch (error) {
-        console.warn("No se pudo detectar la IP, se mantiene el diseño por defecto.");
       }
-    }
+      initGeolocation();
 
-    // Ejecutar detección
-    initGeolocation();
+      // 2. Configurar Lenis (Scroll cinemático)
+      const lenis = new Lenis({
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
 
-    // --- ANIMACIONES Y EXPERIENCIA (Lenis + GSAP) ---
-    const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
+      // 3. Sincronizar Lenis con GSAP (LA CLAVE PARA QUE NO SE ROMPA EL SCROLL)
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+
+      // 4. Iniciar Animaciones GSAP (Usando autoAlpha es más seguro que opacity)
+      gsap.registerPlugin(ScrollTrigger);
+      
+      gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+        gsap.fromTo(elem, 
+          { y: 40, autoAlpha: 0 }, 
+          { y: 0, autoAlpha: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
+        );
+      });
+      
+      gsap.utils.toArray('.gsap-stagger').forEach(container => {
+        gsap.fromTo(container.children,
+          { y: 40, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } }
+        );
+      });
+
+      gsap.utils.toArray('.gsap-scale').forEach(elem => {
+        gsap.fromTo(elem,
+          { scale: 0.9, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
+        );
+      });
+
+      // 5. Cookies
+      setTimeout(() => {
+        if(!localStorage.getItem('cookiesAccepted')) {
+          document.getElementById('cookie-banner').classList.remove('translate-y-full');
+        }
+      }, 2000);
     });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    gsap.registerPlugin(ScrollTrigger);
-    
-    gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-      gsap.fromTo(elem, 
-        { y: 40, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-      );
-    });
-    
-    gsap.utils.toArray('.gsap-stagger').forEach(container => {
-      gsap.fromTo(container.children,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } }
-      );
-    });
-
-    gsap.utils.toArray('.gsap-scale').forEach(elem => {
-      gsap.fromTo(elem,
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-      );
-    });
-
-    // --- COOKIES ---
-    setTimeout(() => {
-      if(!localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookie-banner').classList.remove('translate-y-full');
-      }
-    }, 2000);
 
     function acceptCookies() {
       localStorage.setItem('cookiesAccepted', 'true');
